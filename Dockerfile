@@ -1,3 +1,4 @@
+# Obtain image from the source below
 FROM ubcdsci/jupyterlab
 
 RUN conda install --yes --quiet --channel conda-forge \
