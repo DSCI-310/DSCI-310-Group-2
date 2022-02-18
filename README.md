@@ -2,7 +2,7 @@
 Authors: Emily Ahn, Divya Bilolikar, Ryan Peng, Niki Zamani
 
 ## Summary
-
+Common heart diseases include disease of the blood vessel, arrhythmia (irregular beating of the heart), disease of the heart valve and muscle, infection of the heart, and heart defects from birth. The symptoms of heart diseases are often times unnoticeable and most are only diagnosed after a heart attack,heart failure, or stroke. In this project, we want to be able to predict if someone is at risk of a heart disease based on the variables given in the dataset.
 
 ## Running the Analysis
 Clone this repository and run the code below to install the required dependncies on your machine.
