@@ -8,7 +8,7 @@ As a group we aim to create an environment that is inclusive and safe for all gr
 
 Diversity is a sought after quality in all group work as it promotes alternate ways of thinking and allows people to find new solutions to problems. Factors such as gender, race, age, upbringing mold that way people think and create diversity.  Each member is able to bring a new perspective to the group and challenge everyone’s way of thinking.  Diversity and inclusion go hand in hand and it is important that group members are inclusive to reap the full benefits of a diverse team. Inclusivity means that all members are treated fairly and respectfully regardless of who they are and are given the opportunity to contribute to the group. It is important that members respect the diversity of this group and remain inclusive.
 
-Below is a list of acceptable and unacceptable behavior. This is not a comprehensive
+Below is a list of acceptable and unacceptable behavior. This is not a comprehensive list but includes the main behaviors.
 
 ## Acceptable Behavior
 
