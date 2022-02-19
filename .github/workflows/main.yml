@@ -2,7 +2,7 @@ name: Publish Dockerfile on DockerHub
 on: 
   push: 
     branches:
-      - main
+      - kknn_packages_test
     paths: 
       - 'Dockerfile'
 jobs:
@@ -35,7 +35,7 @@ jobs:
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: rpeng35/dsci-310_group_2 # DockerHub username and repository
+        name: rpeng35/kknn-test # DockerHub username and repository
         username: ${{ secrets.DOCKER_USERNAME }} # you need to add your Docker username to this GitHub repo as a secret
         password: ${{ secrets.DOCKER_PASSWORD }} # you need to add your Docker password to this GitHub repo as a secret
         tags: "latest,${{ steps.bump.outputs.new_tag }}"
