@@ -1,5 +1,4 @@
 library(testthat)
-source("../R/attribute_box_plots.r")
 
 testthat("'attribute_box_plots' should return at least one box plot", {
     #tests to be added
