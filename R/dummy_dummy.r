@@ -14,6 +14,6 @@
 #’
 #‘ @examples
 #‘  attribute_box_plots(heart_disease, diagnosis)
-attribute_box_plots <- function (data_frame, class_col)  {
+attribute_box_plots <- function(data_frame, class_col) {
     # returns box_plots
 }
