@@ -1,6 +1,6 @@
 library(testthat)
 
-source("../R/clean_data.r")
+source("../../R/clean_data.r")
 
 test_that("`clean_data` should return a dataframe", {
     expect_s3_class(clean_data(empty), "data.frame")
@@ -16,6 +16,11 @@ test_that("`clean_data` should return a dataframe with the same or less than num
     expect_equal(nrow(clean_data(two_cols_2_qmissing)), nrow(two_cols_2_qmissing_output))
     expect_equal(nrow(clean_data(two_cols_2_qmissing_and_na)), nrow(two_cols_2_qmissing_and_na_output))
     expect_equal(nrow(clean_data(two_cols_2_na)), nrow(two_cols_2_na_output))
+    
+})
+
+test_that("`clean_data` should return a dataframe with the same number of columns as the dataframe from the original dataset", {
+    # add tests
     
 })
 

@@ -15,8 +15,9 @@ clean_data <- function(df) {
         stop("`df` should be a dataframe")
     }
     
-    na_df <- na_if(df, "?")
+    na_df <- dplyr::na_if(df, "?")
     clean_df <- na.omit(na_df)
+    # clean_df2 <- remove_rownames(clean_df)
     return(clean_df)
         
 }
