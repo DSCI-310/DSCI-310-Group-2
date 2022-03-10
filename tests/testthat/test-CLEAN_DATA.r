@@ -25,11 +25,11 @@ test_that("`clean_data` should return a dataframe with the same number of column
 })
 
 test_that("`clean_data` should return a dataframe with no missing values", {
-    expect_equal(clean_data(empty), empty)
-    expect_equal(clean_data(two_cols_1_qmissing), two_cols_1_qmissing_output)
-    expect_equal(clean_data(two_cols_2_qmissing), two_cols_2_qmissing_output)
-    expect_equal(clean_data(two_cols_2_qmissing_and_na), two_cols_2_qmissing_and_na_output)
-    expect_equal(clean_data(two_cols_2_na), two_cols_2_na_output)
+    expect_equivalent(clean_data(empty), empty)
+    expect_equivalent(clean_data(two_cols_1_qmissing), two_cols_1_qmissing_output)
+    expect_equivalent(clean_data(two_cols_2_qmissing), two_cols_2_qmissing_output)
+    expect_equivalent(clean_data(two_cols_2_qmissing_and_na), two_cols_2_qmissing_and_na_output)
+    expect_equivalent(clean_data(two_cols_2_na), two_cols_2_na_output)
 })
 
 

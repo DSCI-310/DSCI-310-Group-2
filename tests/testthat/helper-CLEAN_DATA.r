@@ -11,6 +11,10 @@ two_cols_2_na <- data.frame(col1 = c(2, 5, 7),
 vec <- 1:3
 test_list <- list(2,3,4)
 
+two_cols_1_qmissing_rownames <- data.frame(col1 = c(2, 5, "?"),
+                                col2 = c(3,6,4))
+rownames(two_cols_1_qmissing_rownames) <- c("Row 1","Row 2", "Row 3")
+
 
 
 
@@ -22,3 +26,7 @@ two_cols_2_qmissing_output <- data.frame(col1 = c(2),
 two_cols_2_qmissing_and_na_output <- data.frame(matrix(ncol = 2, nrow = 0))
 two_cols_2_na_output <- data.frame(col1 = c(2, 5),
                                 col2 = c(3,8))
+
+two_cols_1_qmissing_rownames_output <- data.frame(col1 = c(2, 5),
+                                col2 = c(3,6))
+rownames(two_cols_1_qmissing_rownames) <- c("Row 1","Row 2")

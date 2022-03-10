@@ -17,7 +17,12 @@ clean_data <- function(df) {
     
     na_df <- dplyr::na_if(df, "?")
     clean_df <- na.omit(na_df)
-    rownames(clean_df) <- NULL
-    return(clean_df)
+#    rownames(clean_df) <- NULL
+    if (rownames(df) = NULL) {
+        rownames(clean_df) <- NULL
+        return(clean_df)
+    } else {
+        return(clean_df)
+    }
         
 }
