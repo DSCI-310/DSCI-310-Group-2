@@ -1,4 +1,4 @@
-library(ggplot2)
+
 
 df0 <- data.frame(
     neighbors = NULL,
@@ -13,9 +13,9 @@ df5 <- data.frame(
     mean = c(0.1,0.2,0.3,0.4,0.5)
 )
 
-empty_tibble <- as.tibble(df0)
-tibble_2_row <- as.tibble(df2)
-tibble_5_row <- as.tibble(df5)
+empty_tibble <- as_tibble(df0)
+tibble_2_row <- as_tibble(df2)
+tibble_5_row <- as_tibble(df5)
 
 
 accuracy_empty_tibble <- ggplot(empty_tibble, aes(x = neighbors, y = mean)) +

@@ -6,6 +6,7 @@
 #' 
 #' @examples
 #' accuracy_plot(accuracy)
+library(tibble)
 accuracy_plot <- function(tibble) {
     # returns a line plot
     if(!is_tibble(tibble)) {

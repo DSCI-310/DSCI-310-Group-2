@@ -1,5 +1,6 @@
 library(testthat)
 
+source("././tests/testthat/helper-accuracy_of_knn.r")
 source("././R/accuracy_plot.r")
 
 test_that("`accuracy_plot` should return a ggplot", {
