@@ -19,11 +19,15 @@ rownames(two_cols_1_qmissing_rownames) <- c("Row 1","Row 2", "Row 3")
 
 
 # function outputs for tests
+
 two_cols_1_qmissing_output <- data.frame(col1 = c(2, 5),
                                 col2 = c(3,6))
 two_cols_2_qmissing_output <- data.frame(col1 = c(2),
                                 col2 = c(3))
-two_cols_2_qmissing_and_na_output <- data.frame(matrix(ncol = 2, nrow = 0))
+#two_cols_2_qmissing_and_na_output <- data.frame(matrix(ncol = 2, nrow = 0))
+#two_cols_2_qmissing_and_na_output <- as.numeric(two_cols_2_qmissing_and_na_output)
+two_cols_2_qmissing_and_na_output <- data.frame(col1 = numeric(),
+                 col2 = numeric()) 
 two_cols_2_na_output <- data.frame(col1 = c(2, 5),
                                 col2 = c(3,8))
 
