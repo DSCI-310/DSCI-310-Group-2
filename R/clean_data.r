@@ -1,11 +1,12 @@
 #' Cleans dataframe
 #' 
 #' Finds all instances of missing data and converts it to NA
-#' Then removes all rows with NA to create a new dataframe
+#' Then removes all rows with NA to create a new dataframe, this dataframe
+#' must only have museric types
 #'
 #' @param df A dataframe or dataframe extension
 #'
-#' @return A dataframe with no missing values
+#' @return A dataframe with only numeric data with no missing values
 #' @export
 #'
 #' @examples
@@ -16,13 +17,16 @@ clean_data <- function(df) {
     }
     
     na_df <- dplyr::na_if(df, "?")
-    clean_df <- na.omit(na_df)
+#    num_df <- sapply(na_df, as.numeric)
+    num_df[] <- lapply(na_df, function(x) as.numeric(as.character(x)))
+    clean_df <- na.omit(num_df)
 #    rownames(clean_df) <- NULL
-    if (rownames(df) = NULL) {
-        rownames(clean_df) <- NULL
-        return(clean_df)
-    } else {
-        return(clean_df)
-    }
+    return(clean_df)
+    # if (is.null(rownames(df))) {
+    #     rownames(clean_df) <- NULL
+    #     return(clean_df)
+    # } else {
+    #     return(clean_df)
+    # }
         
 }

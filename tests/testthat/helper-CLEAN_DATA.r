@@ -29,4 +29,4 @@ two_cols_2_na_output <- data.frame(col1 = c(2, 5),
 
 two_cols_1_qmissing_rownames_output <- data.frame(col1 = c(2, 5),
                                 col2 = c(3,6))
-rownames(two_cols_1_qmissing_rownames) <- c("Row 1","Row 2")
+rownames(two_cols_1_qmissing_rownames_output) <- c("Row 1","Row 2")
