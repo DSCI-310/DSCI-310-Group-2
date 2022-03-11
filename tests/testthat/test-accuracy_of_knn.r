@@ -1,6 +1,6 @@
 library(testthat)
 
-source("../../R/accuracy_plot.r")
+source("././R/accuracy_plot.r")
 
 test_that("`accuracy_plot` should return a ggplot", {
     expect_s3_class(accuracy_plot(empty_tibble), "ggplot")

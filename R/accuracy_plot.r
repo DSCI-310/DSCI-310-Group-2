@@ -6,9 +6,9 @@
 #' 
 #' @examples
 #' accuracy_plot(accuracy)
-knn_results <- function(tibble) {
+accuracy_plot <- function(tibble) {
     # returns a line plot
-    if(!is.tibble(tibble)) {
+    if(!is_tibble(tibble)) {
         stop("'tibble' should be of type tibble")
     }
 
