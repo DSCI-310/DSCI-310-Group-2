@@ -1,8 +1,8 @@
 library(testthat)
 library(tidyverse)
 
-source("././tests/testthat/helper-accuracy_of_knn.r")
-source("././R/accuracy_plot.r")
+source("../../tests/testthat/helper-accuracy_of_knn.r")
+source("../../R/accuracy_plot.r")
 
 test_that("`accuracy_plot` should return a ggplot", {
     expect_s3_class(accuracy_plot(empty_tibble), "ggplot")
@@ -25,10 +25,11 @@ test_that("`accuracy_plot` should return a ggplot with x and y axis properly lab
 
 test_that("`accuracy_plot` should return a ggplot and plot layers match expectations", {
     plot <- accuracy_plot(tibble_2_row)
-    expect_equivalent(class(plot$layers[[1]]$stat), "point")
-    expect_equivalent(class(plot$layers[[2]]$stat), "line")
-    expect_equivalent(plot, accuracy_tibble_2_row)
-    expect_equivalent(accuracy_plot(tibble_5_row), accuracy_tibble_5_row)
+    plot2 <- accuracy_plot(tibble_5_row)
+    expect_equivalent(plot$data$mean, accuracy_tibble_2_row$data$mean)
+    expect_equivalent(plot$data$neighbors, accuracy_tibble_2_row$data$neighbors)
+    expect_equivalent(plot2$data$mean, accuracy_tibble_5_row$data$mean)
+    expect_equivalent(plot2$data$neighbors, accuracy_tibble_5_row$data$neighbors)
 })
 
 
