@@ -17,22 +17,12 @@ clean_data <- function(df) {
     }
     
     na_df <- dplyr::na_if(df, "?")
-#    num_df <- sapply(na_df, as.numeric)
-    if (dim(na_df)[1] == 0) {
+    if (nrow(na_df) == 0) {
         return(na_df)
         }
     else {
         na_df[] <- lapply(na_df, function(x) as.numeric(as.character(x)))
         clean_df <- na.omit(na_df)
-
         return(clean_df)
-        }
-    
-    # if (is.null(rownames(df))) {
-    #     rownames(clean_df) <- NULL
-    #     return(clean_df)
-    # } else {
-    #     return(clean_df)
-    # }
-        
+        } 
 }

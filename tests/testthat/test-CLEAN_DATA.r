@@ -29,7 +29,7 @@ test_that("`clean_data` should return a data frame with the same number of colum
 })
 
 test_that("`clean_data` preserves row names", {
-    expect_equivalent(clean_data(two_cols_1_qmissing_rownames), two_cols_1_qmissing_rownames_output)
+    expect_equivalent(clean_data(two_cols_1_qmissing_rownames)[,1], two_cols_1_qmissing_rownames_output[,1])
     
 })
 
