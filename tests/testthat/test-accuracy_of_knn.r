@@ -1,4 +1,5 @@
 library(testthat)
+library(tidyverse)
 
 source("././tests/testthat/helper-accuracy_of_knn.r")
 source("././R/accuracy_plot.r")
@@ -18,7 +19,7 @@ test_that("`accuracy_plot` should return a ggplot and uses correct data", {
 
 test_that("`accuracy_plot` should return a ggplot with x and y axis properly labeled", {
     plot <- accuracy_plot(tibble_2_row)
-    expect_equivalent(plot$labels$x, "Neightors")
+    expect_equivalent(plot$labels$x, "Neighbors")
     expect_equivalent(plot$labels$y, "Accuracy Estimate")
 })
 
