@@ -2,7 +2,7 @@
 #'
 #' Finds all instances of missing data and converts it to NA
 #' Then removes all rows with NA to create a new dataframe, this dataframe
-#' must only have museric types
+#' must only have numeric types
 #'
 #' @param df A dataframe or dataframe extension
 #'
@@ -17,6 +17,6 @@ diagnosis <- function(df) {
     }
     
     df$diagnosis[df$diagnosis > 0] <- 1
-
+    return(df)
 }
                           
