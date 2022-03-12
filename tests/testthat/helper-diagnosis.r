@@ -1,6 +1,6 @@
 # function inputs for tests
 all_zeros <- data.frame(col1 = c(0, 0, 0))
-one_one <- data.frame(col1 = c(0, 1, 0, 0)
+one_one <- data.frame(col1 = c(0, 1, 0, 0))
 one_two <- data.frame(col1 = c(2, 0, 0, 0))
 one_three <- data.frame(col1 = c(0, 0, 3, 0))
 one_four <- data.frame(col1 = c(0, 0, 0, 4))
