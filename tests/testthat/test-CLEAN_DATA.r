@@ -1,6 +1,7 @@
 library(testthat)
 
 source("../../R/clean_data.r")
+source("../../tests/testthat/helper-CLEAN_DATA.r")
 
 test_that("`clean_data` should return a data frame", {
     expect_s3_class(clean_data(empty), "data.frame")
