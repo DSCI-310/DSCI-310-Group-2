@@ -14,7 +14,7 @@ test_that("`diagnosis` should return a data frame", {
 
 })
 
-test_that("`diagnosis` should return a data frame with the same or less than number of rows from the original dataset", {
+test_that("`diagnosis` should return a data frame with the same number of rows as the dataframe from the original dataset", {
     expect_equal(nrow(diagnosis(empty)), nrow(empty))
     expect_equal(nrow(diagnosis(all_zeros)), nrow(all_zeros_output))
     expect_equal(nrow(diagnosis(one_one)), nrow(one_one_output))
