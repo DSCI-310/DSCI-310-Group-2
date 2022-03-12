@@ -15,13 +15,13 @@ List of dependencies to run the analysis:
 To run this analysis first you will need to get a copy of the environment that this analysis was created in. First go to https://hub.docker.com create an account and download the docker application. Open Docker then in terminal run the following command
 
 ```
-docker pull rpeng35/dsci-310_group_2:v0.9.0
+docker pull rpeng35/dsci-310_group_2:v0.10.0
 ```
 
 Then run the code below to install the required dependncies on your machine.
 
 ```
-docker run --rm -it -p 8888:8888 rpeng35/dsci-310_group_2
+docker run --rm -it -p 8888:8888 rpeng35/dsci-310_group_2:v0.10.0
 ```
 If you run the above code and terminal says something about that port already being allocated then simply change the 8888 BEFORE the colon to any other 4 digit number.
 
