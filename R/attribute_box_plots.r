@@ -14,14 +14,14 @@
 #’
 #‘ @examples
 #‘  attribute_box_plots(heart_disease, diagnosis)
-attribute_box_plots<-function(data_frame, {{col_n}}) {
+attribute_box_plots <- function(data_frame, {{col_n}}) {
     plot_list <- c()
     col_names <- c(colnames(data_frame))
-    if ({{col_n}}%in% col_names) {
+    if ({{col_n}} %in% col_names) {
         constant_col <- select(data_frame, col_name)
         constant_col_str <- toString(col_n)
         for i in col_names {
-            col_str <- toString(i.colname)
+            col_str <- toString(i)
             curr_boxplot <- boxplot(i ~ col_names,
                             data=data_frame,
                             main=append("Figure:",col_str, "vs", constant_col_str),
