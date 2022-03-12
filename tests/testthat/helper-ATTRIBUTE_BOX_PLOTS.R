@@ -1,5 +1,3 @@
-
-
 # function input for tests
 three_c_df <- data.frame( 
     age = c(30, 40, 50),
