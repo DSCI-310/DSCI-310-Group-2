@@ -7,7 +7,7 @@ three_c_df <- data.frame(
 
 two_c_df <- data.frame( 
     age = c(30, 40, 50),
-    sex= c(0, 1, 0),
+    sex = c(0, 1, 0),
     diagnosis = c(0, 0, 1))
 
 one_c_df <- data.frame(
@@ -24,21 +24,21 @@ par(mfrow=c(1,3))
 three_plotlist_output <- list( 
     three_c_f_df_output <- boxplot(age ~ diagnosis,
         data=three_c_df,
-        main="Figure 1: Age vs Heart Disease Diagnosis",
+        main="Figure: Age vs Heart Disease Diagnosis",
         xlab="Diagnosis",
         ylab="Age",
         col="orange",
         border="brown"),
     three_c_s_df_output <- boxplot(sex ~ diagnosis,
         data=three_c_df,
-        main="Figure 2: Sex vs Heart Disease Diagnosis",
+        main="Figure: Sex vs Heart Disease Diagnosis",
         xlab="Diagnosis",
         ylab="Sex",
         col="orange",
         border="brown"),
     three_c_t_df_output <- boxplot(slope ~ diagnosis,
         data=three_c_df,
-        main="Figure 3: slope vs Heart Disease Diagnosis",
+        main="Figure: slope vs Heart Disease Diagnosis",
         xlab="Diagnosis",
         ylab="Slope",
         col="orange",
@@ -52,14 +52,14 @@ par(mfrow=c(1,2))
 two_plotlist_output <- list( 
     two_c_df_f_output <- boxplot(age ~ diagnosis,
         data=two_c_df,
-        main="Figure 1: Age vs Heart Disease Diagnosis",
+        main="Figure: Age vs Heart Disease Diagnosis",
         xlab="Diagnosis",
         ylab="Age",
         col="orange",
         border="brown"),
     two_c_df_s_output <- boxplot(sex ~ diagnosis,
         data=two_c_df,
-        main="Figure 2: Sex vs Heart Disease Diagnosis",
+        main="Figure: Sex vs Heart Disease Diagnosis",
         xlab="Diagnosis",
         ylab="Sex",
         col="orange",
