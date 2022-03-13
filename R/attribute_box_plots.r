@@ -14,26 +14,25 @@
 #’
 #‘ @examples
 #‘  attribute_box_plots(heart_disease, diagnosis)
-attribute_box_plots <- function(data_frame, {{col_n}}) {
+attribute_box_plots <- function(data_frame, col_n) {
     if (!is.data.frame(data_frame)) {
-    stop("`data_frame` should be a data frame or data frame extension (e.g. a tibble)")
+        stop("`data_frame` should be a data frame or data frame extension (e.g. a tibble)")
     }
     
-    else if (!is.str({{col_n}})) {
-    stop("`col_b` should be an unquoted string")
+    else if (!is.character(col_n)) {
+        stop("`col_b` should be an unquoted string")
     }
     
-    else if (is.empty(data_frame)) {
-    stop("`data_frame` should not be empty")
+    else if (dim(data_frame)[1] == 0) {
+        stop("`data_frame` should not be empty")
     }
     
-    else if {
     plot_list <- c()
     col_names <- c(colnames(data_frame))
-    if ({{col_n}} %in% col_names) {
-        constant_col <- select(data_frame, col_name)
+    if (col_n %in% col_names) {
+        constant_col <- dplyr::select(data_frame, col_name)
         constant_col_str <- toString(col_n)
-        for i in col_names {
+        for (i in col_names) {
             col_str <- toString(i)
             curr_boxplot <- boxplot(i ~ col_names,
                             data=data_frame,
@@ -43,8 +42,10 @@ attribute_box_plots <- function(data_frame, {{col_n}}) {
                             col="orange",
                             border="brown")
             append(plot_list, curr_boxplot)     
-            }
-        print plot_list
+        }
+        print(plot_list)
     } else {
-        stop("`col_n` should exist in the given data frame.")}
-}}
+        stop("`col_n` should exist in the given data frame.")
+    }
+    
+}
