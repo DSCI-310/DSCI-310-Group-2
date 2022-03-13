@@ -30,7 +30,7 @@ attribute_box_plots <- function(data_frame, col_n) {
     plot_list <- c()
     col_names <- c(colnames(data_frame))
     if (col_n %in% col_names) {
-        constant_col <- dplyr::select(data_frame, col_name)
+        constant_col <- dplyr::select(data_frame, col_n)
         constant_col_str <- toString(col_n)
         for (i in col_names) {
             col_str <- toString(i)
