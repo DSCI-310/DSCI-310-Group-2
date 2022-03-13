@@ -8,7 +8,6 @@
 #’
 #‘ @return  a list of box_plots 
 #‘        The constant column for all the boxplots
-#‘        All the other columns will be on the y axis in each of the box plots
 #‘      
 #‘ @export 
 #’
@@ -19,7 +18,7 @@ attribute_box_plots <- function(data_frame, col_n) {
         stop("`data_frame` should be a data frame or data frame extension (e.g. a tibble)")
     }
     
-    else if (!is.character({{col_n}})) {
+    else if (!is.character(col_n)) {
         stop("`col_b` should be an unquoted string")
     }
     
@@ -29,14 +28,14 @@ attribute_box_plots <- function(data_frame, col_n) {
     
     plot_list <- c()
     col_names <- c(colnames(data_frame))
-    if ({{col_n}} %in% col_names) {
-        constant_col <- dplyr::select(data_frame, {{col_n}})
-        constant_col_str <- toString({{col_n}})
+    if (col_n %in% col_names) {
+        constant_col <- dplyr::select(data_frame, col_n)
+        constant_col_str <- toString(col_n)
         for (i in col_names) {
             col_str <- toString(i)
-            curr_boxplot <- boxplot(i ~ {{col_n}},
+            curr_boxplot <- boxplot(i ~ col_n,
                             data=data_frame,
-                            main=paste("Figure:", col_str, "vs", constant_col_str, sep = " "),
+                            main=append("Figure:",col_str, "vs", constant_col_str),
                             xlab= constant_col_str,
                             ylab=col_str,
                             col="orange",
