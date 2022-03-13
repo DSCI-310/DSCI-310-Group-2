@@ -2,10 +2,6 @@ library(testthat)
 source("../../R/attribute_box_plots.r")
 source("../../tests/testthat/helper-ATTRIBUTE_BOX_PLOTS.R")
 
-test_that("'attribute_box_plots' should return a list with at least one box plot",{
-    expect_type(attribute_box_plots(three_c_df, diagnosis), "list")
-})
-
 
 test_that("'attribute_box_plots' should return a list containing box plots for every column in the given 'data_frame' vs. the given a constant column name.",{
     expect_equivalent(attribute_box_plots(three_c_df, diagnosis), three_plotlist_output) 
