@@ -3,7 +3,7 @@ source("../../R/attribute_box_plots.r")
 source("../../tests/testthat/helper-ATTRIBUTE_BOX_PLOTS.R")
 
 test_that("'attribute_box_plots' should return a list with at least one box plot",{
-    expect_type(attribute_box_plots(three_c_df, "diagnosis"), "list")
+    expect_type(attribute_box_plots(three_c_df, diagnosis), "list")
 })
 
 
