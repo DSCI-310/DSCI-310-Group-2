@@ -34,7 +34,7 @@ attribute_box_plots <- function(data_frame, col_n) {
         constant_col_str <- toString(col_n)
         for (i in col_names) {
             col_str <- toString(i)
-            curr_boxplot <- boxplot(i ~ col_names,
+            curr_boxplot <- boxplot(i ~ col_n,
                             data=data_frame,
                             main=append("Figure:",col_str, "vs", constant_col_str),
                             xlab= constant_col_str,
