@@ -13,6 +13,7 @@ List of dependencies to run the analysis:
 5. KKNN package in version 1.3.1
 6. Bookdown package in version 0.25
 7. Docopt package in version 0.7.1
+8. Rmarkdown package in version 2.13
 
 
 ## Running the Analysis
