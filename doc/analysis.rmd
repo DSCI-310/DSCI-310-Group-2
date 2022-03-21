@@ -17,7 +17,10 @@ Heart disease is an umbrella term that refers to several conditions that affect 
 
 We used data from UCI Machine Learning (https://archive-beta.ics.uci.edu/ml/datasets/heart+disease). The Cleveland Heart Disease dataset consists of 13 explanatory variables and 1 target class. The variables, variable type and a brief description of each variable are listed below.
 
-Figure 1: Variable Descriptions
+```{r variable-table, echo = FALSE, message = FALSE}
+variables_table <- read_csv("../../results/variables.csv")
+knitr::kable(variables_table, caption = "Desciptions of Variables")
+```
 
 # Methods & Results
 We started by loading the heart disease data set and adding a column headers. The database has 14 features. For the purpose of this analysis, we have focused on the Diagnosis feature. Based on the data description, any value over 0 has a heart disease and 0 indicates no presence of heart disease.

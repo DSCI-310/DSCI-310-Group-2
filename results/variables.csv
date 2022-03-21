@@ -1,0 +1,15 @@
+Variable,Variable Type,Description
+Age,Quantitative,Age of patient in years
+Sex,Categorical,Sex of patient where 0 = female and 1 = male
+Chest Pain,Categorical,"Type of chest pain the patient has where 1 = typical angina, 2 = atypical angina, 3 = non-anginal, 4 = asymptomatic"
+Resting Blood Pressure,Quantitative,Resting blood pressure of the patient measured at admission to the hospital in mmHg
+Serum Cholesterol,Quantitative,Serum Cholesterol is the total amount of cholesterol a patient has in their blood. It is measured in mg/dl
+Fasting Blood Sugar,Categorical,The blood sugar level of the patient after fasting where 0 if blood sugar is less than 120mg/dl and 1 otherwise
+Resting ECG,Categorical,"The results of the patients resting electrocardiographic where 0 = normal results, 1 = S-T wave abnormality, 2 = left ventricular hypertrophy"
+Max Heart Rate,Quantitative,The maximum heart rate that the patient had in bpm
+Exercise Induced Angina,Categorical,If the patient has exercised induced angina (chest pain caused by reduced blood flow) where 0 = no and 1 = yes
+Oldpeak,Quantitative,The ST depression (EKG measurement of the heart) a patient has induced by exercise relative to rest in mm
+Slope,Categorical,"The slope of peak exercise ST segment of patient where 1 = upsloping, 2 = flat, 3 = downsloping"
+Num of Major Vessels,Quantitative,The number of major blood vessels
+Thalassemia,Categorical,"Occurrence of thalassemia in the patient (blood disorder that causes patient to have reduced amounts of hemoglobin) where 3 = normal, 6 = fixed defect, and 7 = reversible defect"
+Diagnosis,Categorical,Presence of heart disease in the patient from 0 to 4 where 0 indicates no presence of heart disease. This is the target column.
