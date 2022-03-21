@@ -107,6 +107,9 @@ heart_disease_numerical <- heart_disease_clean[ -c(2:3, 6:7, 9, 11, 13)]
 
 glimpse(heart_disease_numerical)
 
+````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Age vs Heart Disease Diagnosis."}
+knitr::include_graphics("../../results/age_vs_heart.png")
+````
 attribute_box_plots(heart_disease_numerical, diagnosis)
 
 Through this plot we can see that the most common age to have a heart disease ranges from 55 to 60 and looking at the outliers
@@ -119,10 +122,17 @@ diagnosis_heart_disease <- group_by(heart_disease_clean, diagnosis) %>%
             percentage = n() / num_obs * 100)
 diagnosis_heart_disease
 
+````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Distribution of Diagnosis."}
+knitr::include_graphics("../../results/distribution_diagnosis.png")
+````
 
 pie(table(heart_disease_clean$diagnosis), main = "Figure 3: Distribution of Diagnosis", col = c("Blue", "Red"))
 
 As we can see the data looks fairly balanced.
+
+````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Correlation Between Variables."}
+knitr::include_graphics("../../results/correlation_variables.png")
+````
 
 ggcorr(heart_disease_numerical, label = TRUE, label_size = 4, label_round = 2, label_alpha = FALSE) + 
   ggplot2::labs(title = "Figure 4: Correlation between Variables")
@@ -175,6 +185,10 @@ accuracies <- knn_results %>%
   filter(.metric == "accuracy")
 
 set.seed(321)
+
+````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Correlation Between Variables."}
+knitr::include_graphics("../../results/correlation_variables.png")
+````
 
 accuracy_vs_k <- accuracy_plot(accuracies)
 
