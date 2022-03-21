@@ -8,3 +8,4 @@ RUN conda install --yes -c conda-forge r-testthat=3.1.2
 RUN conda install --yes -c conda-forge r-kknn=1.3.1
 RUN conda install --yes -c conda-forge r-bookdown=0.25
 RUN conda install --yes -c conda-forge r-docopt=0.7.1
+RUN conda install --yes -c conda-forge r-rmarkdown=2.13
