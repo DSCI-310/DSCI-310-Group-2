@@ -6,14 +6,16 @@ Common heart diseases include disease of the blood vessel, arrhythmia (irregular
 
 ## Dependencies
 List of dependencies to run the analysis:
-1. Tidyverse package in version 1.3.1
-2. Tidymodels package in verron 0.1.4 
-3. GGally package in version 2.1.2 
-4. Testthat package in version 3.1.2
-5. KKNN package in version 1.3.1
-6. Bookdown package in version 0.25
-7. Docopt package in version 0.7.1
-8. Rmarkdown package in version 2.13
+1.  Tidyverse package in version 1.3.1
+2.  Tidymodels package in verron 0.1.4 
+3.  GGally package in version 2.1.2 
+4.  Testthat package in version 3.1.2
+5.  KKNN package in version 1.3.1
+6.  Bookdown package in version 0.25
+7.  Docopt package in version 0.7.1
+8.  Rmarkdown package in version 2.13
+9.  Tinytex package in version 0.37
+10. knitr package in version 1.37
 
 
 ## Running the Analysis
