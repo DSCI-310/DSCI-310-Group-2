@@ -9,7 +9,7 @@
       toc: true
       toc_depth: 2
 ---
-  
+
 # Predicting Heart Disease
 # Summary
 # Introduction
@@ -18,7 +18,7 @@ Heart disease is an umbrella term that refers to several conditions that affect 
 We used data from UCI Machine Learning (https://archive-beta.ics.uci.edu/ml/datasets/heart+disease). The Cleveland Heart Disease dataset consists of 13 explanatory variables and 1 target class. The variables, variable type and a brief description of each variable are listed below.
 
 ```{r variable-table, echo = FALSE, message = FALSE}
-variables_table <- read_csv("../../results/variables.csv")
+variables_table <- read_csv("../results/variables.csv")
 knitr::kable(variables_table, caption = "Desciptions of Variables")
 ```
 
@@ -37,14 +37,14 @@ library(GGally)
 ```
 
 ```{r message=FALSE, warning=FALSE}
-source("./R/clean_data.r")
-source("./R/accuracy_plot.r")
-source("./R/diagnosis.r")
-source("./R/attribute_box_plots.r")
+source("../R/clean_data.r")
+source("../R/accuracy_plot.r")
+source("../R/diagnosis.r")
+source("../R/attribute_box_plots.r")
 ``` 
 
 ```{r heart--disease-table, echo=FALSE, message=FALSE, out.width="80%"}
-heart_disease <- read.csv("./data/processed-cleveland.csv", header = FALSE)
+heart_disease <- read.csv("../data/processed-cleveland.csv", header = FALSE)
 knitr::kable(head(heart_disease), caption = "Heart Disease Dataset")
 ``` 
 
@@ -137,7 +137,7 @@ glimpse(heart_disease_numerical)
 ```
 
 ````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Age vs Heart Disease Diagnosis."}
-knitr::include_graphics("../../results/age_vs_heart.png")
+knitr::include_graphics("../results/age_vs_heart.png")
 ````
 
 ```{r}
@@ -156,21 +156,12 @@ diagnosis_heart_disease <- group_by(heart_disease_clean, diagnosis) %>%
 diagnosis_heart_disease
 ```
 
-````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Distribution of Diagnosis."}
-knitr::include_graphics("../../results/distribution_diagnosis.png")
-````
-
 
 ```{r}
 pie(table(heart_disease_clean$diagnosis), main = "Figure 3: Distribution of Diagnosis", col = c("Blue", "Red"))
 ```
 
 As we can see the data looks fairly balanced.
-
-
-````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Correlation Between Variables."}
-knitr::include_graphics("../../results/correlation_variables.png")
-````
 
 
 ```{r}
@@ -233,13 +224,7 @@ accuracies <- knn_results %>%
 
 ```{r}
 set.seed(321)
-```
 
-````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Correlation Between Variables."}
-knitr::include_graphics("../../results/correlation_variables.png")
-````
-
-```{r}
 accuracy_vs_k <- accuracy_plot(accuracies)
 
 accuracy_vs_k
