@@ -1,19 +1,21 @@
 ---
-  title: 'DSCI 310 Group 2'
-  author: ""
-  output:
-    bookdown::html_document2:
+title: 'DSCI 310 Group 2: Predicting Heart Disease'
+author: "Emily Ahn, Divya Bilolikar, Ryan Peng, Niki Zamani"
+output:
+  bookdown::html_document2:
       toc: true
       toc_depth: 2
-    bookdown::pdf_document2:
+  bookdown::pdf_document2:
       toc: true
       toc_depth: 2
+
+bibliography: references.bib  
 ---
   
 # Predicting Heart Disease
 # Summary
 # Introduction
-Heart disease is an umbrella term that refers to several conditions that affect the health of one's heart. Common heart diseases include disease of the blood vessel, arrhythmia (irregular beating of the heart), disease of the heart valve and muscle, infection of the heart, and heart defects from birth (“Heart Disease.”). The symptoms of one’s heart disease is very dependent on the type of disease they have, however many forms can be prevented with healthy lifestyle choices. Most heart diseases (with the exception of serious defects at birth) are only diagnosed after a heart attack, heart failure, or stroke (“Heart Disease.”). Heart attacks, heart failure, and strokes are very traumatic events to go through and are oftentimes deadly (“Heart Disease and Stroke.”). Therefore it is very important that we are able to predict if an individual is at an increased risk of heart disease and try to get them preventable care. In this project we want to determine if we can predict if someone is at risk of a heart disease based on the following variables.
+Heart disease is an umbrella term that refers to several conditions that affect the health of one's heart. Common heart diseases include disease of the blood vessel, arrhythmia (irregular beating of the heart), disease of the heart valve and muscle, infection of the heart, and heart defects from birth [@medical_education_mayo]. The symptoms of one’s heart disease is very dependent on the type of disease they have, however many forms can be prevented with healthy lifestyle choices. Most heart diseases (with the exception of serious defects at birth) are only diagnosed after a heart attack, heart failure, or stroke [@medical_education_mayo]. Heart attacks, heart failure, and strokes are very traumatic events to go through and are oftentimes deadly [@disease_control_centers]. Therefore it is very important that we are able to predict if an individual is at an increased risk of heart disease and try to get them preventable care. In this project we want to determine if we can predict if someone is at risk of a heart disease based on the following variables.
 
 We used data from UCI Machine Learning (https://archive-beta.ics.uci.edu/ml/datasets/heart+disease). The Cleveland Heart Disease dataset consists of 13 explanatory variables and 1 target class. The variables, variable type and a brief description of each variable are listed below.
 
@@ -113,8 +115,6 @@ heart_disease_clean <- heart_disease_clean %>%
   mutate(num_of_major_vessels = as.numeric(num_of_major_vessels)) %>%
   diagnosis()
 ```
-
-code inspired by: https://stackoverflow.com/questions/35426903/change-class-of-multiple-columns-in-data-frame-without-for-loop
 
 ```{r}
 heart_disease_clean[,c(2:3, 6:7, 9, 11, 13:14)] <- lapply(heart_disease_clean[,c(2:3, 6:7, 9, 11, 13:14)], as.factor)
@@ -285,24 +285,11 @@ confusion_mat
 The confusion matrix above shows us that a majority of the predictions were given the right label. However we also see that the model is more likely to predict a false negative than a false positive.
 
 # Discussion
-In this project, we used 13 attributes to predict whether a person has heart disease or not. Many contributing factors can be considered for this prediction. Age is one of them. Based on our results, we saw that heart disease is more common among people between 55 to 60 years old. This aligns with our expectation that most heart disease diagnosis is in middle-aged people. We also saw that the other explanatory variables (resting_blood_pressure, serum_cholesterol, max_heart_rate, oldpeak, and num_of_major_vessels) can also be used to train a classification model and predict heart disease in people. We used the K-nearest neighbors algorithm for our classification. This is a simple and intuitive algorithm that works perfectly with our two-class classification problem. However we found that our accuracy was low (73%). This could be due to us dropping many categorical variables. Variables such as if the patient had chest pain, angina, or thalessemia could be very important in determining if they get heart disease ("Angina."). Thus we might have seen higher accuracy if we were able to use these variables.
+In this project, we used 13 attributes to predict whether a person has heart disease or not. Many contributing factors can be considered for this prediction. Age is one of them. Based on our results, we saw that heart disease is more common among people between 55 to 60 years old. This aligns with our expectation that most heart disease diagnosis is in middle-aged people. We also saw that the other explanatory variables (resting_blood_pressure, serum_cholesterol, max_heart_rate, oldpeak, and num_of_major_vessels) can also be used to train a classification model and predict heart disease in people. We used the K-nearest neighbors algorithm for our classification. This is a simple and intuitive algorithm that works perfectly with our two-class classification problem. However we found that our accuracy was low (73%). This could be due to us dropping many categorical variables. Variables such as if the patient had chest pain, angina, or thalessemia could be very important in determining if they get heart disease [@Heart_condition_mayo]. Thus we might have seen higher accuracy if we were able to use these variables.
 
-In future studies, we could use more complex methods to increase the accuracy of our model. Predicting heart disease is remarkably useful for heart disease awareness. Early heart disease detection can be crucial for the treatment process and can save lives. Following our predictions, one can be advised to do checkups and detect early signs of heart diseases and start the treatment early (“The Importance of Early Detection.”).
+In future studies, we could use more complex methods to increase the accuracy of our model. Predicting heart disease is remarkably useful for heart disease awareness. Early heart disease detection can be crucial for the treatment process and can save lives. Following our predictions, one can be advised to do checkups and detect early signs of heart diseases and start the treatment early [@early_detection].
 
 For future studies, one can study the difference between the contribution of these factors in heart disease detection. Our prediction model predicts more false negatives than false positives. This is not good because the prediction may suggest one has no heart disease who in fact has the disease. Therefore, in further studies, we can focus on building a more accurate model and decrease our amounts of false negatives. Having false positives, on the other hand, is not crucial to be taken care of since one may be a person prone to heart disease and can be advised to be more cautious and do more regular checkups. In this study, we focused on the numerical variables. For more accurate predictions, one can consider those categorical variables contributing to the presence of heart disease which can lead to a more reliable prediction.
 
 
 # References
-“Angina.” Mayo Clinic, Mayo Foundation for Medical Education and Research, 12 June 2020, https://www.mayoclinic.org/diseases-conditions/angina/symptoms-causes/syc-20369373.
-
-“Cleveland Heart Disease Dataset.” UCI Machine Learning Repository, https://archive-beta.ics.uci.edu/ml/datasets/heart+disease.
-
-“Heart Disease and Stroke.” Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, 27 Jan. 2022, https://www.cdc.gov/chronicdisease/resources/publications/factsheets/heart-disease-stroke.htm.
-
-“Heart Disease.” Mayo Clinic, Mayo Foundation for Medical Education and Research, 9 Feb. 2021, https://www.mayoclinic.org/diseases-conditions/heart-disease/symptoms-causes/syc-20353118.
-
-“The Importance of Early Detection.” Jupiter Medical Center, https://www.jupitermed.com/news-press-releases/2020/june/the-importance-of-early-detection/.
-
-ScransomScransom 2. “Change Class of Multiple Columns in Data Frame without for Loop.” Stack Overflow, 1 Jan. 1964, https://stackoverflow.com/questions/35426903/change-class-of-multiple-columns-in-data-frame-without-for-loop.
-
-
