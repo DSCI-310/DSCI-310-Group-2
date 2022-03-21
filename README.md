@@ -10,6 +10,10 @@ List of dependencies to run the analysis:
 2. Tidymodels package in verron 0.1.4 
 3. GGally package in version 2.1.2 
 4. Testthat package in version 3.1.2
+5. KKNN package in version 1.3.1
+6. Bookdown package in version 0.25
+7. Docopt package in version 0.7.1
+
 
 ## Running the Analysis
 To run this analysis first you will need to get a copy of the environment that this analysis was created in. First go to https://hub.docker.com create an account and download the docker application. Open Docker then in terminal run the following command
