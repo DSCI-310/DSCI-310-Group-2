@@ -94,8 +94,6 @@ Since the mean of each column is 0 we can tell that there are no more missing va
 # Exploring Dataset
 Next we need to get to know our data. We will do this by performing exploratory analysis where we summarize our data and graph a few relevant figures. The aim of doing this is to get a better understanding of what our final classification analysis will look like.
 
-
-
 The glimpsefunction allows us to easy tell what type of data we have (i.e. are variables made of integers or characters). This is especially important for our dataset since we have categorical data that is separated into groups with numerical values, for example there are three categories in a given variable and they are given a label from 1 to 3.
 
 
@@ -139,7 +137,6 @@ glimpse(heart_disease_numerical)
 knitr::include_graphics("../../results/age_vs_heart.png")
 ````
 
-
 ```{r}
 attribute_box_plots(heart_disease_numerical, diagnosis)
 ```
@@ -155,7 +152,6 @@ diagnosis_heart_disease <- group_by(heart_disease_clean, diagnosis) %>%
             percentage = n() / num_obs * 100)
 diagnosis_heart_disease
 ```
-
 
 ````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Distribution of Diagnosis."}
 knitr::include_graphics("../../results/distribution_diagnosis.png")
