@@ -16,7 +16,7 @@ df2 <- data.frame(
 # function outputs for tests
 empty_df <- table(df0$diagnosis)
 
-tab1 <- table(df1$diagnosis, ncol=3)
-colnames(tab1) <- c('Diagnosis','Count','Percentage')
+tab1 <- table(df1$diagnosis)
+
 tab <- as.table(tab1)
  
