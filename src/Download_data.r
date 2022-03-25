@@ -29,17 +29,12 @@ main <- function(url, out_file) {
     
     data <- read.csv(url, header = FALSE)
     
-    result = tryCatch({
+    if (dir.exists(out_file)) {
         write.csv(data, out_file)
-    }, warning = function(w) {
-        warning-handler-code
-    }, error = function(e) {
-        error-handler-code
-    }, finally = {
-        cleanup-code
+    } else {
+        dir.create(out_file)
+        write.csv(data, out_file)
     }
-
-
 }
 
 main(opt[["--url"]], opt[["--out_file"]])
