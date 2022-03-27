@@ -16,15 +16,17 @@ balance_check <- function(df, col_n) {
         stop("`df` should be a dataframe")
     }
     
-    else if (!is.character(col_n)) {
+    else if (!is.character({{col_n}})) {
         stop("`col_n` should be an unquoted string")
     }
     
     else {
+        
         num_obs <- nrow(df)
-        group_by(df, {{col_n}}) %>%
-            summarize (count = n(),
-                       percentage = n() / num_obs * 100)
+        output <- group_by(df, {{col_n}}) %>%
+                     summarize(count = dplyr::n(),
+                               percentage = dplyr::n() / num_obs * 100)
+        output
     }
 }
 
