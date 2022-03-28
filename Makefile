@@ -4,11 +4,11 @@ all: results/final_model.rds results/accuracy_vs_k.png results/predictor_distrib
 
 # download data
 data/raw/cleveland_raw.csv: src/Download_data.r
-    r src/Download_data.r --url=https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data --out_file=data/raw/cleveland_raw.csvs
+    r src/Download_data.r --url=https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data --out_file=data/raw/cleveland_raw.csv
 
-# pre-process data (e.g., scale and split into train & test) STILL NEED TO EDIT
-data/processed/training.feather data/processed/test.feather scale_factor.rds: src/pre_process_wisc.r data/raw/wdbc.feather
-    Rscript src/pre_process_wisc.r --input=data/raw/wdbc.feather --out_dir=data/processed 
+# pre-process data (e.g., scale and split into train & test)
+data/processed/training.csv data/processed/test.csv scale_factor.rds: src/Clean_data.r data/raw/cleveland_raw.csv
+    Rscript src/Clean_data.r --input=data/raw/cleveland_raw.csv --out_dir=data/processed 
 
 # exploratory data analysis - visualize predictor distributions across classes STILL NEED TO EDIT
 results/predictor_distributions_across_class.png: src/eda_wisc.r data/processed/training.feather
