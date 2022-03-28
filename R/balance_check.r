@@ -20,6 +20,10 @@ balance_check <- function(df, col_n) {
         stop("`col_n` should be an unquoted string")
     }
     
+    else if (!{{col_n}} %in% colnames(df)) {
+        stop("`col_n` should exist in the givendataframe")
+    }
+    
     else {
         
         num_obs <- nrow(df)
