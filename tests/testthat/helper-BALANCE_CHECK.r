@@ -18,8 +18,8 @@ empty_df <- table(df0$diagnosis)
 
 num_obs <- nrow(df1)
 tab1_output <- group_by(df1, "diagnosis") %>%
-                                summarize(count = n(),
-                                          percentage = n() / num_obs * 100)
+                                summarize(count = dplyr::n(),
+                                          percentage = dplyr::n() / num_obs * 100)
 tab1_output
 
 
@@ -27,8 +27,8 @@ tab1_output
 
 num_obs <- nrow(df2)
 tab2_output <- group_by(df2, "diagnosis") %>%
-                                summarize(count = n(),
-                                          percentage = n() / (num_obs * 100))
+                     summarize(count = dplyr::n(),
+                               percentage = dplyr::n() / num_obs * 100)
 tab2_output
 
 
