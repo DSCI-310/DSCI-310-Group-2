@@ -72,6 +72,7 @@ main <- function(input, out_dir){
     saveRDS(pre_process_scaler, file = paste0(out_dir, "/scale_factor.rds"))
     
     # write training and test data to feather files
+    write_csv(raw_data_numerical, paste0(out_dir, "/full.csv"))
     write_csv(training_scaled, paste0(out_dir, "/training.csv"))
     write_csv(test_scaled, paste0(out_dir, "/test.csv"))
 }

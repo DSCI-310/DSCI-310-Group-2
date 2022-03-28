@@ -10,9 +10,9 @@ data/raw/cleveland_raw.csv: src/Download_data.r
 data/processed/training.csv data/processed/test.csv scale_factor.rds: src/Clean_data.r data/raw/cleveland_raw.csv
     Rscript src/Clean_data.r --input=data/raw/cleveland_raw.csv --out_dir=data/processed 
 
-# exploratory data analysis - visualize predictor distributions across classes STILL NEED TO EDIT
-results/predictor_distributions_across_class.png: src/eda_wisc.r data/processed/training.feather
-    Rscript src/eda_wisc.r --train=data/processed/training.feather --out_dir=results
+# exploratory data analysis 
+results/Distribution_of_diagnosis.png: src/eda_hd.r data/processed/training.csv
+    Rscript src/eda_hd.r --full=data/processed/full.csv --train=data/processed/training.csv --out_dir=results
 
 # tune model (here, find K for k-nn using 30 fold cv with Cohen's Kappa) STILL NEED TO EDIT
 results/final_model.rds results/accuracy_vs_k.png: src/fit_breast_cancer_predict_model.r data/processed/training.feather
