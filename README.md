@@ -19,7 +19,10 @@ List of dependencies to run the analysis:
 
 
 ## Running the Analysis
-To run this analysis first you will need to get a copy of the environment that this analysis was created in. First go to https://hub.docker.com create an account and download the docker application. Open Docker then in terminal run the following command
+
+There are two ways to run this analysis. 
+
+The first way is to use docker. You will need to get a copy of the environment that this analysis was created in. Go to https://hub.docker.com create an account and download the docker application. Open Docker then in terminal run the following command
 
 ```
 docker pull rpeng35/dsci-310_group_2:v0.10.0
@@ -38,6 +41,14 @@ To clone the repository you can either clone it in the terminal command line or 
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
 
 To clone the repository using JupyterLab first ensure that you are in the root directory of your computer. Then navigate to the git button (diamond shape) on the left side menu bar and click on the button that says "Clone a Repository". Then paste the HTTPS link that can be found on the main page of this repository (https://github.com/DSCI-310/DSCI-310-Group-2) when you click on the green code button.
+
+The second way to run this analysis does not use docker. 
+
+This can be done by cloning the repository (as descibed above or any other way you feel comfortable) and locally installing the dependencies listed above. Then navigate to the root of this project (best done using the command line) and run the following command
+```
+make all
+```
+
 
 ## License
 Licensed under the MIT License and 
