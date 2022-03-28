@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' diagnosis_heart_disease(heart_disease_clean, diagnosis)
+#' balance_check(data_frame, diagnosis)
 balance_check <- function(df, col_n) {
     if (!is.data.frame(df)) {
         stop("`df` should be a dataframe")
