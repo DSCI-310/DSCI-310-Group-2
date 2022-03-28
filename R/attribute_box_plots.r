@@ -26,25 +26,53 @@ attribute_box_plots <- function(data_frame, col_n) {
         stop("`data_frame` should not be empty")
     }
     
+
+    
     plot_list <- c()
     col_names <- c(colnames(data_frame))
-    if (col_n %in% col_names) {
-        constant_col <- dplyr::select(data_frame, col_n)
-        constant_col_str <- toString(col_n)
+    if ({{col_n}} %in% colnames(data_frame)) {
+        constant_col <- dplyr::select(data_frame, {{col_n}})
+        constant_col_str <- toString({{col_n}})
         for (i in col_names) {
             col_str <- toString(i)
-            curr_boxplot <- boxplot(i ~ col_n,
-                            data=data_frame,
-                            main=append("Figure:",col_str, "vs", constant_col_str),
+            curr_boxplot <- boxplot(i ~ {{col_n}},
+                            data= data_frame,
+                            main= paste("Figure:",col_str, "vs", constant_col_str),
                             xlab= constant_col_str,
-                            ylab=col_str,
-                            col="orange",
-                            border="brown")
-            append(plot_list, curr_boxplot)     
-        }
-        print(plot_list)
-    } else {
+                            ylab= col_str,
+                            col= "orange",
+                            border= "brown")
+            append(plot_list, curr_boxplot)
+                            
+        } 
+        print(plot_list) 
+                                    
+        } else {
         stop("`col_n` should exist in the given data frame.")
     }
-    
 }
+    
+    
+    
+#    plot_list <- c()
+ #   col_names <- c(colnames(data_frame))
+#    if ({{col_n}} %in% colnames(data_frame)) {
+#       constant_col <- dplyr::select(data_frame, {{col_n}})
+#       constant_col_str <- toString({{col_n}})
+#       for (i in col_names) {
+#           col_str <- toString(i)
+#           curr_boxplot <- boxplot(i ~ col_n,
+#                           data=data_frame,
+#                           main=append("Figure:",col_str, "vs", constant_col_str),
+#                           xlab= constant_col_str,
+#                           ylab=col_str,
+#                           col="orange",
+#                           border="brown")
+#           append(plot_list, curr_boxplot)     
+#       }
+#       print(plot_list)
+#   } else {
+#       stop("`col_n` should exist in the given data frame.")
+#   }
+#   
+#}
