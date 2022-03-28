@@ -35,11 +35,11 @@ tab2_output
 
 
 
-tab2_output <- matrix(c (0, as.integer(0), as.double(0), 1, as.integer(2), as.double(100)), 
-              ncol=3, 
-              byrow=TRUE)
-colnames(tab2_output) <- c('diagnosis','count','percentage')
-tab2_output <- as.table(tab2_output)
+#tab2_output <- matrix(c (0, as.integer(0), as.double(0), 1, as.integer(2), as.double(100)), 
+#              ncol=3, 
+#              byrow=TRUE)
+#colnames(tab2_output) <- c('diagnosis','count','percentage')
+#tab2_output <- as.table(tab2_output)
 
 
 
