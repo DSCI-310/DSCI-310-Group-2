@@ -12,6 +12,21 @@ output:
 bibliography: references.bib  
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message=FALSE)
+library(tidyverse)
+library(tidymodels)
+library(ggplot2)
+library(GGally)
+library(rlang)
+source("../R/clean_data.r")
+source("../R/accuracy_plot.r")
+source("../R/diagnosis.r")
+source("../R/attribute_box_plots.r")
+set.seed(4)
+```
+
+
 # Predicting Heart Disease
 # Summary
 # Introduction
@@ -20,7 +35,7 @@ Heart disease is an umbrella term that refers to several conditions that affect 
 We used data from UCI Machine Learning (https://archive-beta.ics.uci.edu/ml/datasets/heart+disease). The Cleveland Heart Disease dataset consists of 13 explanatory variables and 1 target class. The variables, variable type and a brief description of each variable are listed below.
 
 ```{r variable-table, echo = FALSE, message = FALSE}
-variables_table <- read_csv("../results/variables.csv")
+variables_table <- read_csv("../data/variables.csv")
 knitr::kable(variables_table, caption = "Desciptions of Variables")
 ```
 
@@ -29,30 +44,18 @@ We started by loading the heart disease data set and adding a column headers. Th
 
 We grouped the data by its diagnosis. Then we applied data cleaning. We checked for the data type and for any mistakes about the characters. We further dealt with the NA values.
 
-Packages
-
-```{r message=FALSE, warning=FALSE}
-library(tidyverse)
-library(tidymodels)
-library(ggplot2)
-library(GGally)
-```
-
-```{r message=FALSE, warning=FALSE}
-source("../R/clean_data.r")
-source("../R/accuracy_plot.r")
-source("../R/diagnosis.r")
-source("../R/attribute_box_plots.r")
-``` 
-
 ```{r heart--disease-table, echo=FALSE, message=FALSE, out.width="80%"}
 heart_disease <- read.csv("../data/processed-cleveland.csv", header = FALSE)
 knitr::kable(head(heart_disease), caption = "Heart Disease Dataset")
 ``` 
 
-Before any data analysis can be done, the data needs to be cleaned. The downloaded data does not have any column names so first we need to add all the variables to their respective column.
+```{r load-data}
+heart_disease <- read_csv("../data/raw/cleveland_raw.csv")
+```
 
-```{r message=FALSE, warning=FALSE}
+Before any data analysis can be done, the data needs to be cleaned. The downloaded data does not have any column names so first we need to add all the variables to their respective column. The next step in cleaning up the data is to check for NAs. It is important that we remove these before any data analysis so that the functions we use will run on the data properly. Instead of R recognizing our missing values, we have a question marks. We need to convert this to an actual NA that R will recognize. Thus to clean the data we have used our custom clean function. Additioanlly since this project should be in the scope of DSCI 100 and we did not learn how to use one hot encoding to deal with categorical variables, we will drop all the categorical variables from our dataset.
+
+```{r clean-data, message=FALSE, warning=FALSE}
 colnames(heart_disease) <- c("age",
                              "sex",
                              "chest_pain",
@@ -67,34 +70,11 @@ colnames(heart_disease) <- c("age",
                              "num_of_major_vessels",
                              "thalassemia",
                              "diagnosis")
-knitr::kable(head(heart_disease), caption = "Heart Disease Dataset")
-```
-
-The next step in cleaning up the data is to check for NAs. It is important that we remove these before any data analysis so that the functions we use will run on the data properly. Using the colMeans function we get the percentage of NAs in each column.
-
-```{r}
-colMeans(is.na(heart_disease))
-```
-
-As we can see above, it looks like we have no NAs in our data. However on the UCI ML website, we know that our data has missing values.
-
-```{r}
-unique(heart_disease)
-```
-
-Instead of R recognizing our missing values, we have a question mark. We need to convert this to an actual NA that R will recognize.
-
-```{r}
+                             
 heart_disease_clean <- clean_data(heart_disease)
+heart_disease_numerical <- heart_disease_clean[ -c(2:3, 6:7, 9, 11, 13)]
+knitr::kable(head(heart_disease_numerical), caption = "Clean Heart Disease Dataset")
 ```
-
-Now if we run our colMeans function again we will see that we do have missing values in num_of_major_vessels and thalassemia. We now need to remove these missing values.
-
-```{r}
-colMeans(is.na(heart_disease_clean))
-```
-
-Since the mean of each column is 0 we can tell that there are no more missing values in our dataset.
 
 # Exploring Dataset
 Next we need to get to know our data. We will do this by performing exploratory analysis where we summarize our data and graph a few relevant figures. The aim of doing this is to get a better understanding of what our final classification analysis will look like.
@@ -116,9 +96,6 @@ heart_disease_clean <- heart_disease_clean %>%
   diagnosis()
 ```
 
-```{r}
-heart_disease_clean[,c(2:3, 6:7, 9, 11, 13:14)] <- lapply(heart_disease_clean[,c(2:3, 6:7, 9, 11, 13:14)], as.factor)
-```
 
 ```{r}
 glimpse(heart_disease_clean)
@@ -128,13 +105,7 @@ glimpse(heart_disease_clean)
 summary(heart_disease) #summary
 ```
 
-Since this project should be in the scope of DSCI 100 and we did not learn how to use one hot encoding to deal with categorical variables, we will drop all the categorical variables from our dataset.
 
-```{r}
-heart_disease_numerical <- heart_disease_clean[ -c(2:3, 6:7, 9, 11, 13)]
-
-glimpse(heart_disease_numerical)
-```
 
 ````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Age vs Heart Disease Diagnosis."}
 knitr::include_graphics("../results/age_vs_heart.png")
@@ -176,13 +147,25 @@ Now that we have done our exploratory analysis we can begin training our classif
 
 First we need to split our data. We do this so that after we create our model we can find the accuracy of our classifier.
 
-```{r}
-set.seed(321)
+```{r split-data}
+# split into training and test data sets
+hd_data_split <- initial_split(heart_disease_numerical, prop = 0.75, strata = diagnosis)
+data_train <- training(hd_data_split)
+data_test <- testing(hd_data_split) 
 
-heart_disease_split <- initial_split(heart_disease_numerical, prop = 0.75, strata = diagnosis)
-hd_train <- training(heart_disease_split)
-hd_test <- testing(heart_disease_split)
+train_counts <- summarise(training_data,
+                          `Data partition` = "Training",
+                          `Heart Disease Not Detected` = sum(diagnosis  == 0),
+                          `Heart Disease Detected` = sum(diagnosis  == 1))
+test_counts <- summarise(test_data,
+                         `Data partition` = "Test",
+                         `Heart Disease Not Detected` = sum(diagnosis  == 0),
+                         `Heart Disease Detected` = sum(diagnosis  == 1))
+kable(bind_rows(train_counts, test_counts),
+      caption = "Counts of observation for each class for each data partition.")
 ```
+
+As we can see in REFENECE FIGURE, each class is fairy balanced.
 
 Next we perform cross validation for our data. This is important because it allows us to get a more accurate idea of how our classifier is doing. If we did not use cross validation our classifier might be biased from an unbalanced validation set without us knowing. We are preprocess the data by creating a recipe. This step allows us to standardize our predictors so that any one predictor is not disproportionately affecting the classifier even if it has a larger number.
 
