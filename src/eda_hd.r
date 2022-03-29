@@ -29,21 +29,21 @@ main <- function(full, out_dir) {
                     border="brown"
                     )
     ggsave(paste0(out_dir, "/box_hd.png"), 
-         data,
+         box_hd,
          width = 8, 
          height = 10)
     
     # generate pie plot to visualize distribution of diagnosis
     pie_distribution <- pie(table(data$diagnosis), col = c("Blue", "Red"))
     ggsave(paste0(out_dir, "/Distribution_of_diagnosis.png"), 
-         data,
+         pie_distribution,
          width = 8, 
          height = 10)
     
     # generate correlation plot
     data_correlation <- ggcorr(data, label = TRUE, label_size = 4, label_round = 2, label_alpha = FALSE)
     ggsave(paste0(out_dir, "/varaible_correlation.png"), 
-         data,
+         data_correlation,
          width = 8, 
          height = 10)
         
