@@ -1,3 +1,4 @@
+
 # function inputs for tests
 df0 <- data.frame()
     
@@ -17,7 +18,7 @@ df2 <- data.frame(
 empty_df <- table(df0$diagnosis)
 
 num_obs <- nrow(df1)
-tab1_output <- group_by(df1, "diagnosis") %>%
+tab1_output <- group_by(df1, diagnosis) %>%
                                 summarize(count = dplyr::n(),
                                           percentage = dplyr::n() / num_obs * 100)
 tab1_output
@@ -26,7 +27,7 @@ tab1_output
 
 
 num_obs <- nrow(df2)
-tab2_output <- group_by(df2, "diagnosis") %>%
+tab2_output <- group_by(df2, diagnosis) %>%
                      summarize(count = dplyr::n(),
                                percentage = dplyr::n() / num_obs * 100)
 tab2_output
