@@ -22,7 +22,7 @@ library(rlang)
 source("../R/clean_data.r")
 source("../R/accuracy_plot.r")
 source("../R/diagnosis.r")
-source("../R/attribute_box_plots.r")
+source("../R/balance_check.r")
 set.seed(4)
 ```
 
@@ -50,7 +50,8 @@ knitr::kable(head(heart_disease), caption = "Heart Disease Dataset")
 ``` 
 
 ```{r load-data}
-heart_disease <- read_csv("../data/raw/cleveland_raw.csv")
+heart_disease <- read_csv("../data/processed-cleveland.csv")
+head(heart_disease)
 ```
 
 Before any data analysis can be done, the data needs to be cleaned. The downloaded data does not have any column names so first we need to add all the variables to their respective column. The next step in cleaning up the data is to check for NAs. It is important that we remove these before any data analysis so that the functions we use will run on the data properly. Instead of R recognizing our missing values, we have a question marks. We need to convert this to an actual NA that R will recognize. Thus to clean the data we have used our custom clean function. Additioanlly since this project should be in the scope of DSCI 100 and we did not learn how to use one hot encoding to deal with categorical variables, we will drop all the categorical variables from our dataset.
@@ -108,36 +109,29 @@ summary(heart_disease) #summary
 
 
 ````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Age vs Heart Disease Diagnosis."}
-knitr::include_graphics("../results/age_vs_heart.png")
+knitr::include_graphics("../results/box_hd.png")
 ````
 
-```{r}
-attribute_box_plots(heart_disease_numerical, diagnosis)
-```
 
 Through this plot we can see that the most common age to have a heart disease ranges from 55 to 60 and looking at the outliers
 
 We grouped the data by its diagnosis and graphed it in order for us to see if the dataset is balanced or not.
 
 ```{r}
-num_obs <- nrow(heart_disease_clean)
-diagnosis_heart_disease <- group_by(heart_disease_clean, diagnosis) %>%
-  summarize(count = n(),
-            percentage = n() / num_obs * 100)
+diagnosis_heart_disease <- balance_check(heart_disease_clean, diagnosis)
 diagnosis_heart_disease
 ```
 
 
-```{r}
-pie(table(heart_disease_clean$diagnosis), main = "Figure 3: Distribution of Diagnosis", col = c("Blue", "Red"))
+```{r pie distribution, echo=FALSE, fig.dim = c(8, 6), fig.cap="Figure 3: Distribution of Diagnosis"}
+knitr::include_graphics("../results/Distribution_of_diagnosis.png")
 ```
 
 As we can see the data looks fairly balanced.
 
 
-```{r}
-ggcorr(heart_disease_numerical, label = TRUE, label_size = 4, label_round = 2, label_alpha = FALSE) + 
-  ggplot2::labs(title = "Figure 4: Correlation between Variables")
+```{r correlation, echo=FALSE, fig.dim = c(8, 6), fig.cap="Figure 4: Correlation between Variables"}
+knitr::include_graphics("../results/varaible_correlation.png")
 ```
 
 In figure 4 we can see that most variables look like they have some correlation save for serum_cholesterol and max_heart_rate. While the correlations may not look very high, this is actually a good sign because highly correlated variables can lead to overly complicated models.
