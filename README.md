@@ -48,6 +48,10 @@ This can be done by cloning the repository (as descibed above or any other way y
 ```
 make all
 ```
+Then to remove all of the files created by that (such as the results folder), run following
+```
+make clean
+```
 
 
 ## License
