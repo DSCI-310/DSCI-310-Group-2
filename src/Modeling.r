@@ -1,6 +1,6 @@
 
 "Fits a k-nn model on the pre-processed training data from the Cleveland Heart Disease dataset (https://archive-beta.ics.uci.edu/ml/datasets/heart+disease) Saves the model as a rds file.
-Usage: src/Modeling.r --train=<train> --out_dir=<out_dir>
+Usage: src/modeling.r --train=<train> --out_dir=<out_dir>
   
 Options:
 --train=<train>     Path (including filename) to training data (which needs to be saved as a csv file)
@@ -19,8 +19,7 @@ opt <- docopt(doc)
 
 main <- function(train, out_dir) {
 
-  # Perform Cross Validation ----------------------------------------------------
-
+  # Perform Cross Validation 
   training_data <- read_csv(train) 
   hd_vfold <- vfold_cv(training_data, v = 5, strata = diagnosis)
 
@@ -30,8 +29,7 @@ main <- function(train, out_dir) {
         step_center(all_predictors())
   
 
-  # Create Classifier and Tuning ----------------------------------------------
-
+  # Create Classifier and Tuning 
   knn_spec <- nearest_neighbor(weight_func = "rectangular", neighbors = tune()) %>%
     set_engine("kknn") %>%
     set_mode("classification")
@@ -48,15 +46,14 @@ main <- function(train, out_dir) {
         filter(.metric == "accuracy")
 
     accuracy_vs_k <- accuracy_plot(accuracies)
-    ggsave(paste0(out_dir, "/Accuracy_Plot.png"), 
+    ggsave(paste0(out_dir, "/accuracy_plot.png"), 
          data,
          width = 8, 
          height = 10)
     accuracy_vs_k
  
-    
-    
-     # Prediction and Training ---------------------------------------------------------
+      
+    # Prediction and Training 
     knn_spec <- nearest_neighbor(weight_func = "rectangular", neighbors = 12) %>%
         set_engine("kknn") %>%
         set_mode("classification")
@@ -68,10 +65,9 @@ main <- function(train, out_dir) {
         fit(data = hd_train)
 
     
-  # Fit final model ---------------------------------------------------------
+   # Fit final model 
     saveRDS(knn_fit, file = paste0(out_dir, "/final_model.rds"))
-    }
-
-    main(opt[["--train"]], opt[["--out_dir"]])
+}
+main(opt[["--train"]], opt[["--out_dir"]])
 
 

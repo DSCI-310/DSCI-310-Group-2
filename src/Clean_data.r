@@ -7,7 +7,7 @@ write.csv(heart_disease_clean, fileName)
 "Cleans and prepocesses data csv data from the web to a local filepath a csv 
 Writes the training and test data to separate feather files.
 
-Usage: src/Clean_data.r --input=<input> --out_dir=<out_dir>
+Usage: src/clean_data.r --input=<input> --out_dir=<out_dir>
 
 Options:
 --input=<input>       Path (including filename) to raw data (csv file)
@@ -29,7 +29,7 @@ opt <- docopt(doc)
 
 main <- function(input, out_dir){
     
-    # read data and add colnames and clean it
+    # Read Data and Add Colnames and Clean it
     raw_data <- read_csv(input) 
     colnames(raw_data) <- c("age",
                             "sex",
@@ -48,10 +48,12 @@ main <- function(input, out_dir){
     raw_data_clean <- clean_data(raw_data)
     raw_data_numerical <- raw_data_clean[ -c(2:3, 6:7, 9, 11, 13)]
     
+    
     # split into training and test data sets
     raw_data_split <- initial_split(raw_data_numerical, prop = 0.75, strata = diagnosis)
     data_train <- training(raw_data_split)
     data_test <- testing(raw_data_split) 
+    
     
     # scale test data using scale factor
     x_train <- data_train %>% select(-diagnosis) 
@@ -65,6 +67,7 @@ main <- function(input, out_dir){
     training_scaled <- x_train_scaled %>% mutate(class = data_train %>% select(diagnosis) %>% pull())
     test_scaled <- x_test_scaled %>% mutate(class = data_test %>% select(diagnosis) %>% pull())
     
+    
     # write scale factor to a file
     try({
         dir.create(out_dir)
@@ -76,5 +79,4 @@ main <- function(input, out_dir){
     write_csv(training_scaled, paste0(out_dir, "/training.csv"))
     write_csv(test_scaled, paste0(out_dir, "/test.csv"))
 }
-
 main(opt[["--input"]], opt[["--out_dir"]])

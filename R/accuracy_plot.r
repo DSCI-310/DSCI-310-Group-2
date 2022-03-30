@@ -6,19 +6,17 @@
 #' 
 #' @examples
 #' accuracy_plot(accuracy)
-library(tibble)
+
 accuracy_plot <- function(tibble) {
     # returns a line plot
-    if(!is_tibble(tibble)) {
+    if(!tibble::is_tibble(tibble)) {
         stop("'tibble' should be of type tibble")
     }
-
-    plot <- ggplot(tibble, aes(neighbors, mean)) +
+    plot <- ggplot2::ggplot(tibble, aes(neighbors, mean)) +
         geom_point() +
         geom_line() +
         labs(x = "Neighbors", y = "Accuracy Estimate") + 
         theme(text = element_text(size = 12)) + 
         ggtitle("Accuracy of K-NN Model with Neighbors")
-
     return(plot)
 }

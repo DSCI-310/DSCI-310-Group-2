@@ -10,8 +10,8 @@ vec <- 1:3
 test_list <- list(2,3,4)
 everything_rownames <- data.frame(diagnosis = c(0, 1, 2))
 
-# function outputs for tests
 
+# function outputs for tests
 all_zeros_output <- data.frame(diagnosis = c(0, 0, 0))
 one_one_output <- data.frame(diagnosis = c(0, 1, 0, 0))
 one_two_output <-data.frame(diagnosis = c(0, 0, 1, 0)) 

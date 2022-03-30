@@ -1,5 +1,5 @@
 "Assesses model's accuracy on a test data set.
-Usage: src/Model_results.r --test=<test> --out_dir=<out_dir>
+Usage: src/model_results.r --test=<test> --out_dir=<out_dir>
 Options:
 --test=<test>          Path (including filename) to test data (which needs to be saved as a feather file)
 --out_dir=<out_dir>    Path to directory where the plots should be saved
@@ -14,10 +14,12 @@ set.seed(2019)
 opt <- docopt(doc)
 
 main <- function(test, out_dir) {
-    # Load and wrangle test data ----------------------------------------------
+    
+    # Load and Wrangle test data 
     test_data <- read_csv(test) 
    
-    # Load model and predict --------------------------------------------------
+    
+    # Load Model and Predict 
     final_model <- readRDS("results/final_model.rds")
     
     hd_predictions <- predict(final_model, test_data)  %>%
@@ -27,7 +29,8 @@ main <- function(test, out_dir) {
         metrics(truth = diagnosis, estimate = .pred_class) %>%
         filter(.metric == "accuracy")
     
-    # assess model accuracy ---------------------------------------------------
+    
+    # Assess Model Accuracy 
     confusion_mat <- hd_predictions %>%
         conf_mat(truth = diagnosis, estimate = .pred_class)
     
@@ -36,5 +39,4 @@ main <- function(test, out_dir) {
            width = 8, 
            height = 10)
 }
-  
 main(opt[["--test"]], opt[["--out_dir"]])
