@@ -22,7 +22,7 @@ results/final_model.rds results/Accuracy_Plot.png: src/Modeling.r data/processed
 results/final_model_quality.rds: src/breast_cancer_test_results.r data/processed/test.feather
     Rscript src/breast_cancer_test_results.r --test=data/processed/test.feather --out_dir=results
 
-# render report STILL NEED TO EDIT
+# render report
 doc/heart_disease.rmd: doc/heart_disease.rmd doc/references.bib
     Rscript -e "rmarkdown::render('doc/heart_disease.rmd')"
 
