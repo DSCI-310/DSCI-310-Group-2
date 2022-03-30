@@ -23,8 +23,8 @@ results/confusion_matrix.png: src/Modelling_results.r data/processed/test.csv
     Rscript src/Modelling_results.r --test=data/processed/test.csv --out_dir=results
 
 # render report STILL NEED TO EDIT
-doc/breast_cancer_predict_report.md: doc/heart_disease.Rmd doc/references.bib
-    Rscript -e "rmarkdown::render('doc/heart_disease.Rmd')"
+doc/heart_disease.rmd: doc/heart_disease.rmd doc/references.bib
+    Rscript -e "rmarkdown::render('doc/heart_disease.rmd')"
 
 clean: 
     rm -rf data
