@@ -14,9 +14,9 @@ data/processed/full.csv data/processed/training.csv data/processed/test.csv scal
 results/Distribution_of_diagnosis.png results/box_hd.png results/varaible_correlation.png: src/eda_hd.r data/processed/full.csv
     Rscript src/eda_hd.r --full=data/processed/full.csv --out_dir=results
 
-# tune model (here, find K for k-nn using 30 fold cv with Cohen's Kappa) STILL NEED TO EDIT
-results/final_model.rds results/accuracy_vs_k.png: src/fit_breast_cancer_predict_model.r data/processed/training.feather
-    Rscript src/fit_breast_cancer_predict_model.r --train=data/processed/training.feather --out_dir=results
+# tune model
+results/final_model.rds results/Accuracy_Plot.png: src/Modeling.r data/processed/training.csv
+    Rscript src/Modeling.r --train=data/processed/training.csv --out_dir=results
 
 # test model on unseen data
 results/confusion_matrix.png: src/Modelling_results.r data/processed/test.csv
