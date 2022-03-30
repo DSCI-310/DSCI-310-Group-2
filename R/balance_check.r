@@ -17,7 +17,6 @@ balance_check <- function(df, col_n) {
     if (!is.data.frame(df)) {
         stop("`df` should be a dataframe")
     }
-
     else {
     num_obs <- nrow(df)
         output <- dplyr::group_by(df, {{col_n}}) %>%
