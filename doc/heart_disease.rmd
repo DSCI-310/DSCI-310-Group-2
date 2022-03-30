@@ -117,7 +117,7 @@ Through this plot we can see that the most common age to have a heart disease ra
 
 We grouped the data by its diagnosis and graphed it in order for us to see if the dataset is balanced or not.
 
-```{r}
+```{r table, echo=FALSE}
 diagnosis_heart_disease <- balance_check(heart_disease_clean, diagnosis)
 diagnosis_heart_disease
 ```
