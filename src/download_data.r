@@ -11,10 +11,9 @@ Options:
 library(tidyverse)
 library(tidymodels)
 library(ggplot2)
+library(docopt) 
 library(GGally)
 library(rlang)
-
-from docopt import docopt
 
 opt <- docopt(doc)
  

@@ -14,7 +14,8 @@ Options:
 --out_dir=<out_dir>   Path to directory where the processed data should be written
 " -> doc
 
-library(tidyverse) 
+library(tidyverse)
+library(docopt) 
 library(tidymodels)
 library(ggplot2)
 library(GGally)
@@ -22,8 +23,6 @@ library(rlang)
 set.seed(4)
 
 source("../R/clean_data.r")
-
-from docopt import docopt
 
 opt <- docopt(doc)
 
