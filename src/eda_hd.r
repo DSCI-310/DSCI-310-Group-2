@@ -20,9 +20,11 @@ opt <- docopt(doc)
 main <- function(full, out_dir) {
     
     data <- read_csv(full)
+    
+    
     # generate box plot
     box_hd <-  boxplot(age ~ diagnosis,
-                    data=heart_disease_numerical,
+                    data=data,
                     xlab="Heart Disease",
                     ylab="Age",
                     col="orange",
@@ -33,12 +35,14 @@ main <- function(full, out_dir) {
          width = 8, 
          height = 10)
     
+    
     # generate pie plot to visualize distribution of diagnosis
     pie_distribution <- pie(table(data$diagnosis), col = c("Blue", "Red"))
-    ggsave(paste0(out_dir, "/Distribution_of_diagnosis.png"), 
+    ggsave(paste0(out_dir, "/distribution_of_diagnosis.png"), 
          pie_distribution,
          width = 8, 
          height = 10)
+    
     
     # generate correlation plot
     data_correlation <- ggcorr(data, label = TRUE, label_size = 4, label_round = 2, label_alpha = FALSE)
@@ -48,5 +52,4 @@ main <- function(full, out_dir) {
          height = 10)
         
 }
-
 main(opt[["--full"]], opt[["--out_dir"]])

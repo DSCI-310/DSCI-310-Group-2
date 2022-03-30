@@ -1,7 +1,7 @@
 "Downloads data csv data from the web to a local filepath a csv 
 Writes the training and test data to separate feather files.
 
-Usage: src/Download_data.r --url=<url> --out_file=<out_file>
+Usage: src/download_data.r --url=<url> --out_file=<out_file>
 
 Options:
 --url=<url>              URL from where to download the data (must be in standard csv format)
@@ -19,8 +19,8 @@ from docopt import docopt
 opt <- docopt(doc)
 
 main <- function(url, out_file) {
-#DO A TRY CATCH FOR WEBSITE THAT DOES NOT WORK
     
+    #Do a Try Catch For Website That Does Not Work
     data <- read.csv(url, header = FALSE)
     
     if (dir.exists(out_file)) {
@@ -30,7 +30,6 @@ main <- function(url, out_file) {
         write.csv(data, out_file)
     }
 }
-
 main(opt[["--url"]], opt[["--out_file"]])
                       
                       
