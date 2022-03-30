@@ -1,6 +1,6 @@
 library(testthat)
 source("../../R/balance_check.r")
-source("../../tests/testthat/helper-BALANCE_CHECK.R")
+source("../../tests/testthat/helper-balance_check.R")
 
 test_that("'balance_check' should return a table", {
     expect_type(tab1_output, "list")
