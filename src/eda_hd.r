@@ -42,7 +42,7 @@ main <- function(full, out_dir) {
     
     # generate correlation plot
     data_correlation <- ggcorr(data, label = TRUE, label_size = 4, label_round = 2, label_alpha = FALSE)
-    ggsave(paste0(out_dir, "/varaible_correlation.png"), 
+    ggsave(paste0(out_dir, "/variable_correlation.png"), 
          data_correlation,
          width = 8, 
          height = 10)
