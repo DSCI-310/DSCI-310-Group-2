@@ -24,5 +24,5 @@ clean_data <- function(df) {
         na_df[] <- lapply(na_df, function(x) as.numeric(as.character(x)))
         clean_df <- na.omit(na_df)
         return(clean_df)
-        } 
+    } 
 }
