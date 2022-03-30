@@ -29,4 +29,4 @@ doc/heart_disease.rmd: doc/heart_disease.rmd doc/references.bib
 clean: 
     rm -rf data
     rm -rf results
-    rm -rf doc/breast_cancer_predict_report.md doc/heart_disease.html
+    rm -rf doc/heart_disease.rmd doc/heart_disease.html
