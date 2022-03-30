@@ -14,9 +14,9 @@ data/processed/training.csv data/processed/test.csv scale_factor.rds: src/Clean_
 results/predictor_distributions_across_class.png: src/eda_wisc.r data/processed/training.feather
     Rscript src/eda_wisc.r --train=data/processed/training.feather --out_dir=results
 
-# tune model (here, find K for k-nn using 30 fold cv with Cohen's Kappa) STILL NEED TO EDIT
-results/final_model.rds results/accuracy_vs_k.png: src/fit_breast_cancer_predict_model.r data/processed/training.feather
-    Rscript src/fit_breast_cancer_predict_model.r --train=data/processed/training.feather --out_dir=results
+# tune model
+results/final_model.rds results/Accuracy_Plot.png: src/Modeling.r data/processed/training.csv
+    Rscript src/Modeling.r --train=data/processed/training.csv --out_dir=results
 
 # test model on unseen data STILL NEED TO EDIT
 results/final_model_quality.rds: src/breast_cancer_test_results.r data/processed/test.feather
