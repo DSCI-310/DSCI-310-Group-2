@@ -12,13 +12,11 @@ accuracy_plot <- function(tibble) {
     if(!tibble::is_tibble(tibble)) {
         stop("'tibble' should be of type tibble")
     }
-
     plot <- ggplot2::ggplot(tibble, aes(neighbors, mean)) +
         geom_point() +
         geom_line() +
         labs(x = "Neighbors", y = "Accuracy Estimate") + 
         theme(text = element_text(size = 12)) + 
         ggtitle("Accuracy of K-NN Model with Neighbors")
-
     return(plot)
 }

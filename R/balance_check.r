@@ -19,7 +19,6 @@ balance_check <- function(df, col_n) {
     }
 
     else {
-        
     num_obs <- nrow(df)
         output <- dplyr::group_by(df, {{col_n}}) %>%
             dplyr::summarize(count := dplyr::n(),

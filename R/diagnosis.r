@@ -14,7 +14,6 @@ diagnosis <- function(df) {
     if (!is.data.frame(df)) {
         stop("`df` should be a dataframe")
     }
-    
     df$diagnosis[df$diagnosis > 0] <- 1
     return(df)
 }
