@@ -35,7 +35,7 @@ main <- function(full, out_dir) {
     
     # generate pie plot to visualize distribution of diagnosis
     pie_distribution <- pie(table(data$diagnosis), col = c("Blue", "Red"))
-    ggsave(paste0(out_dir, "/Distribution_of_diagnosis.png"), 
+    ggsave(paste0(out_dir, "/distribution_of_diagnosis.png"), 
          pie_distribution,
          width = 8, 
          height = 10)

@@ -124,7 +124,7 @@ diagnosis_heart_disease
 
 
 ```{r pie distribution, echo=FALSE, fig.dim = c(8, 6), fig.cap="Figure 3: Distribution of Diagnosis"}
-knitr::include_graphics("../results/Distribution_of_diagnosis.png")
+knitr::include_graphics("../results/distribution_of_diagnosis.png")
 ```
 
 As we can see the data looks fairly balanced.
