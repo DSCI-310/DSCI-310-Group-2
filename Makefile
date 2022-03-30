@@ -4,7 +4,7 @@ all: results/final_model.rds results/accuracy_plot.png results/distribution_of_d
 
 # download data
 data/raw/cleveland_raw.csv: src/download_data.r
-    r src/download_data.r --url=https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data --out_file=data/raw/cleveland_raw.csv
+    Rscript src/download_data.r --url=https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data --out_file=data/raw/cleveland_raw.csv
 
 # pre-process data (e.g., scale and split into train & test)
 data/processed/full.csv data/processed/training.csv data/processed/test.csv scale_factor.rds: src/clean_data.r data/raw/cleveland_raw.csv
