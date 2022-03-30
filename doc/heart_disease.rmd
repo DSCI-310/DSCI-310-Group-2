@@ -175,23 +175,6 @@ knitr::include_graphics("../results/Accuracy_Plot.png")
 
 "From our graph above we can see that our accuracy peaks at around 12-13 neighbors. Therefore we will use that in our new classifier that we will use to predict."
 
-```{r}
-set.seed(321)
-
-knn_spec <- nearest_neighbor(weight_func = "rectangular", neighbors = 12) %>%
-  set_engine("kknn") %>%
-  set_mode("classification")
-```
-
-```{r}
-set.seed(321)
-
-knn_fit <- workflow() %>%
-  add_recipe(recipe) %>%
-  add_model(knn_spec) %>%
-  fit(data = hd_train)
-```
-
 ```{r correlation, echo=FALSE, fig.dim = c(8, 6), fig.cap="Figure 6: Confusion Matrix of Results"}
 knitr::include_graphics("../results/confusion_matrix.png")
 ```
