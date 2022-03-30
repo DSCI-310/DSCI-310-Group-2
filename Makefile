@@ -18,9 +18,9 @@ results/Distribution_of_diagnosis.png results/box_hd.png results/varaible_correl
 results/final_model.rds results/accuracy_vs_k.png: src/fit_breast_cancer_predict_model.r data/processed/training.feather
     Rscript src/fit_breast_cancer_predict_model.r --train=data/processed/training.feather --out_dir=results
 
-# test model on unseen data STILL NEED TO EDIT
-results/final_model_quality.rds: src/breast_cancer_test_results.r data/processed/test.feather
-    Rscript src/breast_cancer_test_results.r --test=data/processed/test.feather --out_dir=results
+# test model on unseen data
+results/confusion_matrix.png: src/Modelling_results.r data/processed/test.csv
+    Rscript src/Modelling_results.r --test=data/processed/test.csv --out_dir=results
 
 # render report STILL NEED TO EDIT
 doc/breast_cancer_predict_report.md: doc/heart_disease.Rmd doc/references.bib
