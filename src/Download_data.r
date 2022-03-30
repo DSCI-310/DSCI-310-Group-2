@@ -17,7 +17,7 @@ library(rlang)
 from docopt import docopt
 
 opt <- docopt(doc)
-
+ 
 main <- function(url, out_file) {
     
     #Do a Try Catch For Website That Does Not Work

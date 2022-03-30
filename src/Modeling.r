@@ -1,4 +1,3 @@
-
 "Fits a k-nn model on the pre-processed training data from the Cleveland Heart Disease dataset (https://archive-beta.ics.uci.edu/ml/datasets/heart+disease) Saves the model as a rds file.
 Usage: src/modeling.r --train=<train> --out_dir=<out_dir>
   
