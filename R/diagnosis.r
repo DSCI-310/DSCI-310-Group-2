@@ -3,7 +3,7 @@
 #' take a data frame and change diagnosis column that is greater than 0 to 1
 #' must only have numeric types
 #'
-#' @param df A dataframe or dataframe extension
+#' @param df A dataframe or dataframe extension that must contain a column called diagnosis
 #'
 #' @return A dataframe with modified diagnosis input
 #' @export
