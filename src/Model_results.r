@@ -39,4 +39,4 @@ main <- function(test, out_dir) {
            width = 8, 
            height = 10)
 }
-main(opt[["--test"]], opt[["--out_dir"]])
+main(opt[["--test"]], opt[["--out_dir"]]) 

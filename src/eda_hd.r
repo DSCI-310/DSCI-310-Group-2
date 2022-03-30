@@ -15,7 +15,7 @@ library(ggridges)
 library(ggthemes)
 theme_set(theme_minimal())
 
-opt <- docopt(doc)
+opt <- docopt(doc) 
 
 main <- function(full, out_dir) {
     
