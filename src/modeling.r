@@ -12,7 +12,6 @@ library(ggplot2)
 library(GGally)
 library(docopt)
 library(rlang)
-library(kernlab)
 source("R/accuracy_plot.r")
 set.seed(4)
 

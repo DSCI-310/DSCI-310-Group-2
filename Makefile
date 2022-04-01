@@ -11,7 +11,7 @@ data/processed/full.csv data/processed/training.csv data/processed/test.csv: src
 	Rscript src/preprocess_data.r --input=data/raw/cleveland_raw.csv --out_dir=data/processed 
 
 # exploratory data analysis 
-results/distribution_of_diagnosis.png results/box_hd.png results/variable_correlation.png: src/eda_hd.r data/processed/full.csv
+results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png: src/eda_hd.r data/processed/full.csv
 	Rscript src/eda_hd.r --full=data/processed/full.csv --out_dir=results
 
 # tune model

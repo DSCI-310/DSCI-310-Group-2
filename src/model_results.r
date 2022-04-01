@@ -5,7 +5,6 @@ Options:
 --out_dir=<out_dir>    Path to directory where the plots should be saved
 " -> doc
   
-library(feather)
 library(tidyverse)
 library(caret)
 library(docopt)

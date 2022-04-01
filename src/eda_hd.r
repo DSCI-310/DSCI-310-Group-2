@@ -1,5 +1,6 @@
 "Creates eda plots for the pre-processed data from the Preprocessed cleveland heart disease data (from https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data).
 Saves the plots as pdf and pnt file.
+
 Usage: src/eda_hd.r --full=<full> --out_dir=<out_dir>
 
 Options:
@@ -7,7 +8,6 @@ Options:
 --out_dir=<out_dir> Path to directory where the plots should be saved
 " -> doc
 
-library(feather)
 library(tidyverse)
 library(caret)
 library(docopt)
