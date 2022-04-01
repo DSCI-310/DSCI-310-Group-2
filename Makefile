@@ -7,11 +7,11 @@ data/raw/cleveland_raw.csv: src/download_data.r
 	Rscript src/download_data.r --url=https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data --out_file=data/raw/cleveland_raw.csv
 
 # pre-process data (e.g., scale and split into train & test)
-data/processed/full.csv data/processed/training.csv data/processed/test.csv scale_factor.rds: src/preprocess_data.r data/raw/cleveland_raw.csv
+data/processed/full.csv data/processed/training.csv data/processed/test.csv: src/preprocess_data.r data/raw/cleveland_raw.csv
 	Rscript src/preprocess_data.r --input=data/raw/cleveland_raw.csv --out_dir=data/processed 
 
 # exploratory data analysis 
-results/distribution_of_diagnosis.png results/box_hd.png results/variable_correlation.png: src/eda_hd.r data/processed/full.csv
+results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png: src/eda_hd.r data/processed/full.csv
 	Rscript src/eda_hd.r --full=data/processed/full.csv --out_dir=results
 
 # tune model

@@ -23,10 +23,10 @@ main <- function(url, out_file) {
     data <- read.csv(url, header = FALSE)
     
     if (dir.exists(out_file)) {
-        write.csv(data, out_file)
+        write.csv(data, out_file, row.names=FALSE)
     } else {
         dir.create(dirname(out_file), recursive = TRUE)
-        write.csv(data, out_file)
+        write.csv(data, out_file, row.names=FALSE)
     }
 }
 main(opt[["--url"]], opt[["--out_file"]])

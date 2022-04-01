@@ -5,7 +5,6 @@ Options:
 --out_dir=<out_dir>    Path to directory where the plots should be saved
 " -> doc
   
-library(feather)
 library(tidyverse)
 library(caret)
 library(docopt)
@@ -16,7 +15,7 @@ opt <- docopt(doc)
 main <- function(test, out_dir) {
     
     # Load and Wrangle test data 
-    test_data <- read_csv(test) 
+    test_data <- read.csv(test) 
    
     
     # Load Model and Predict 

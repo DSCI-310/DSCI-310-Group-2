@@ -1,5 +1,6 @@
 "Creates eda plots for the pre-processed data from the Preprocessed cleveland heart disease data (from https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data).
 Saves the plots as pdf and pnt file.
+
 Usage: src/eda_hd.r --full=<full> --out_dir=<out_dir>
 
 Options:
@@ -7,7 +8,6 @@ Options:
 --out_dir=<out_dir> Path to directory where the plots should be saved
 " -> doc
 
-library(feather)
 library(tidyverse)
 library(caret)
 library(docopt)
@@ -19,7 +19,11 @@ opt <- docopt(doc)
 
 main <- function(full, out_dir) {
     
-    data <- read_csv(full)
+    data <- read.csv(full)
+    
+    try({
+        dir.create(out_dir)
+    })
     
     
     # generate box plot
@@ -42,6 +46,7 @@ main <- function(full, out_dir) {
          pie_distribution,
          width = 8, 
          height = 10)
+  
     
     
     # generate correlation plot
