@@ -31,7 +31,7 @@ docker pull rpeng35/dsci-310_group_2:v0.13.0
 Then run the code below to install the required dependncies on your machine.
 
 ```
-docker run --rm -it -p 8888:8888 rpeng35/dsci-310_group_2:v0.13.0
+docker run --rm -it -p 8888:8888 -v /$(pwd):/opt/notebooks rpeng35/dsci-310_group_2:v0.13.0
 ```
 If you run the above code and terminal says something about that port already being allocated then simply change the 8888 BEFORE the colon to any other 4 digit number.
 
