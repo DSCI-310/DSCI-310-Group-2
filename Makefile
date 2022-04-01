@@ -8,7 +8,7 @@ data/raw/cleveland_raw.csv: src/download_data.r
 
 # pre-process data (e.g., scale and split into train & test)
 data/processed/full.csv data/processed/training.csv data/processed/test.csv scale_factor.rds: src/clean_data.r data/raw/cleveland_raw.csv
-	Rscript src/clean_data.r --input=data/raw/cleveland_raw.csv --out_dir=data/processed 
+	Rscript src/preprocess_data.r --input=data/raw/cleveland_raw.csv --out_dir=data/processed 
 
 # exploratory data analysis 
 results/distribution_of_diagnosis.png results/box_hd.png results/variable_correlation.png: src/eda_hd.r data/processed/full.csv

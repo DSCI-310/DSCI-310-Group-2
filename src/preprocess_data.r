@@ -7,7 +7,7 @@ write.csv(heart_disease_clean, fileName)
 "Cleans and prepocesses data csv data from the web to a local filepath a csv 
 Writes the training and test data to separate feather files.
 
-Usage: src/clean_data.r --input=<input> --out_dir=<out_dir>
+Usage: src/preprocess_data.r --input=<input> --out_dir=<out_dir>
 
 Options:
 --input=<input>       Path (including filename) to raw data (csv file)
@@ -22,7 +22,7 @@ library(GGally)
 library(rlang)
 set.seed(4)
 
-source("../R/clean_data.r")
+source("../R/preprocess_data.r")
 
 opt <- docopt(doc)
 
