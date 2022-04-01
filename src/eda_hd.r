@@ -19,7 +19,7 @@ opt <- docopt(doc)
 
 main <- function(full, out_dir) {
     
-    data <- read_csv(full)
+    data <- read.csv(full)
     
     
     # generate box plot

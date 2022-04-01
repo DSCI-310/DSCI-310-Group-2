@@ -16,7 +16,7 @@ opt <- docopt(doc)
 main <- function(test, out_dir) {
     
     # Load and Wrangle test data 
-    test_data <- read_csv(test) 
+    test_data <- read.csv(test) 
    
     
     # Load Model and Predict 

@@ -12,27 +12,26 @@ library(ggplot2)
 library(GGally)
 library(docopt)
 library(rlang)
-source("../R/accuracy_plot.r")
+library(kernlab)
+source("R/accuracy_plot.r")
 set.seed(4)
 
 opt <- docopt(doc)
 
 main <- function(train, out_dir) {
+    # Perform Cross Validation 
+    training_data <- read.csv(train) 
+    hd_vfold <- vfold_cv(training_data, v = 5, strata = diagnosis)
 
-  # Perform Cross Validation 
-  training_data <- read_csv(train) 
-  hd_vfold <- vfold_cv(training_data, v = 5, strata = diagnosis)
-
-
-    recipe <- recipe(diagnosis ~ ., data = training_data) %>%
-        step_scale(all_predictors()) %>%
-        step_center(all_predictors())
+   recipe <- recipe(diagnosis ~ ., data = training_data) %>%
+       step_scale(all_predictors()) %>%
+       step_center(all_predictors())
   
 
-  # Create Classifier and Tuning 
-  knn_spec <- nearest_neighbor(weight_func = "rectangular", neighbors = tune()) %>%
-    set_engine("kknn") %>%
-    set_mode("classification")
+    # Create Classifier and Tuning 
+    knn_spec <- nearest_neighbor(weight_func = "rectangular", neighbors = tune()) %>%
+        set_engine("kknn") %>%
+        set_mode("classification")
 
     k_vals <- tibble(neighbors = seq(from = 1, to = 100, by = 5))
 
