@@ -35,6 +35,16 @@ test_that("`diagnosis` should return a data frame with the same number of column
 
 })
 
+test_that("`diagnosis` does not return the right value", {
+    expect_equal(diagnosis(all_zeros), all_zeros_output)
+    expect_equal(diagnosis(one_one), one_one_output)
+    expect_equal(diagnosis(one_two), one_two_output)
+    expect_equal(diagnosis(one_three), one_three_output)
+    expect_equal(diagnosis(one_four), one_four_output)
+    expect_equal(diagnosis(one_everything), one_everything_output)
+})
+
+
 
 test_that("`diagnosis` should throw an error when incorrect types are passed to `data_frame` argument", {
     expect_error(diagnosis(vec))
