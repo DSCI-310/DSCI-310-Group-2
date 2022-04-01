@@ -29,7 +29,7 @@ opt <- docopt(doc)
 main <- function(input, out_dir){
     
     # Read Data and Add Colnames and Clean it
-    raw_data <- read_csv(input) 
+    raw_data <- read.csv(input) 
     colnames(raw_data) <- c("age",
                             "sex",
                             "chest_pain",
