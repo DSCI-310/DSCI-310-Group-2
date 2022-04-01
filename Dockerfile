@@ -11,3 +11,6 @@ RUN conda install --yes -c conda-forge r-docopt=0.7.1
 RUN conda install --yes -c conda-forge r-rmarkdown=2.13
 RUN conda install --yes -c conda-forge r-tinytex=0.37
 RUN conda install --yes -c conda-forge r-knitr=1.37
+RUN conda install --yes -c conda-forge r-magrittr=2.0.3
+RUN conda install --yes -c conda-forge r-dplyr=1.0.8
+RUN conda install --yes -c conda-forge r-caret=6.0-91
