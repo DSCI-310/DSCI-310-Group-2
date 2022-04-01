@@ -21,6 +21,10 @@ main <- function(full, out_dir) {
     
     data <- read.csv(full)
     
+    try({
+        dir.create(out_dir)
+    })
+    
     
     # generate box plot
     box_hd <-  boxplot(age ~ diagnosis,
@@ -42,6 +46,7 @@ main <- function(full, out_dir) {
          pie_distribution,
          width = 8, 
          height = 10)
+  
     
     
     # generate correlation plot
