@@ -45,9 +45,9 @@ main <- function(train, out_dir) {
         filter(.metric == "accuracy")
 
     accuracy_vs_k <- accuracy_plot(accuracies)
-    # try({
-    #     dir.create(out_dir)
-    # })
+        
+    dir.create(out_dir, recursive = TRUE)
+    
     ggsave(paste0(out_dir, "/accuracy_plot.png"), 
          data,
          width = 8, 
