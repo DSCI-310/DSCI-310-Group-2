@@ -18,9 +18,7 @@ set.seed(4)
 opt <- docopt(doc)
 
 main <- function(train, out_dir) {
-    try({
-        dir.create(out_dir)
-    })
+    
     # Perform Cross Validation 
     training_data <- read.csv(train) 
     hd_vfold <- vfold_cv(training_data, v = 5, strata = diagnosis)
@@ -47,6 +45,9 @@ main <- function(train, out_dir) {
         filter(.metric == "accuracy")
 
     accuracy_vs_k <- accuracy_plot(accuracies)
+    # try({
+    #     dir.create(out_dir)
+    # })
     ggsave(paste0(out_dir, "/accuracy_plot.png"), 
          data,
          width = 8, 

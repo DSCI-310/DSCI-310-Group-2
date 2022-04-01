@@ -1,6 +1,6 @@
-# Based of Code form Tiffany Timbers: https://github.com/ttimbers/breast_cancer_predictor/blob/master/Makefile
+# Based of Code from Tiffany Timbers: https://github.com/ttimbers/breast_cancer_predictor/blob/master/Makefile
 
-all: results/final_model.rds results/accuracy_plot.png results/distribution_of_diagnosis.png results/box_hd.png results/variable_correlation.png results/final_model_quality.rds doc/heart_disease.rmd
+all: results/final_model.rds results/accuracy_plot.png results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png results/final_model_quality.rds doc/heart_disease.rmd
 
 # download data
 data/raw/cleveland_raw.csv: src/download_data.r
