@@ -1,9 +1,3 @@
-heart_disease <- read.csv("../data/processed_cleveland.csv", header = FALSE)
-heart_disease_clean <- clean_data(heart_disease)
-path_out = '../data/'
-fileName = paste(path_out, "heart_disease_clean.csv", sep = '')
-write.csv(heart_disease_clean, fileName)
-
 "Cleans and prepocesses data csv data from the web to a local filepath a csv 
 Writes the training and test data to separate feather files.
 
@@ -22,7 +16,7 @@ library(GGally)
 library(rlang)
 set.seed(4)
 
-source("../R/preprocess_data.r")
+source("R/clean_data.r")
 
 opt <- docopt(doc)
 
