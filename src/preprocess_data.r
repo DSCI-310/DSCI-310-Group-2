@@ -14,6 +14,7 @@ library(tidymodels)
 library(ggplot2)
 library(GGally)
 library(rlang)
+library(magrittr)
 set.seed(4)
 
 source("R/clean_data.r")
@@ -49,16 +50,16 @@ main <- function(input, out_dir){
     
     
     # scale test data using scale factor
-    x_train <- data_train %>% select(-diagnosis) 
-    x_test <- data_test %>% select(-diagnosis)
+    x_train <- data_train %>% dplyr::select(-diagnosis)
+    x_test <- data_test %>% dplyr::select(-diagnosis)
     
     scaler <- preProcess(x_train, method = c("center", "scale"))
     
     x_train_scaled <- predict(scaler, x_train)
     x_test_scaled <- predict(scaler, x_test)
     
-    training_scaled <- x_train_scaled %>% mutate(class = data_train %>% select(diagnosis) %>% pull())
-    test_scaled <- x_test_scaled %>% mutate(class = data_test %>% select(diagnosis) %>% pull())
+    training_scaled <- x_train_scaled %>% mutate(class = data_train %>% dplyr::select(diagnosis) %>% pull())
+    test_scaled <- x_test_scaled %>% mutate(class = data_test %>% dplyr::select(diagnosis) %>% pull())
     
     
     # write scale factor to a file
