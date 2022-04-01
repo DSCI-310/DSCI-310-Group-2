@@ -13,6 +13,7 @@ library(caret)
 library(docopt)
 library(ggridges)
 library(ggthemes)
+library(ggplot2)
 theme_set(theme_minimal())
 
 opt <- docopt(doc) 
@@ -26,14 +27,11 @@ main <- function(full, out_dir) {
     })
     
     
-    # generate box plot
-    box_hd <-  boxplot(age ~ diagnosis,
-                    data=data,
-                    xlab="Heart Disease",
-                    ylab="Age",
-                    col="orange",
-                    border="brown"
-                    )
+    # generate box plot  
+    box_hd <- ggplot(training_scaled, aes(x=age, y=diagnosis)) + 
+        geom_boxplot() +
+        coord_flip()
+    
     ggsave(paste0(out_dir, "/box_hd.png"), 
          box_hd,
          width = 8, 
@@ -41,7 +39,18 @@ main <- function(full, out_dir) {
     
     
     # generate pie plot to visualize distribution of diagnosis
-    pie_distribution <- pie(table(data$diagnosis), col = c("Blue", "Red"))
+    diagnosis_heart_disease <- group_by(data, diagnosis) %>%
+    summarize(count = n(),
+              percentage = n() / nrow(data) * 100)
+    
+    names(diagnosis_heart_disease)[1] <- 'diagnosis'
+    names(diagnosis_heart_disease)[2] <- 'value'
+    diagnosis_heart_disease$diagnosis <- as.factor(diagnosis_heart_disease$diagnosis)
+
+    pie_distribution <- ggplot(diagnosis_heart_disease, aes(x="", y=value, fill= diagnosis)) +
+        geom_bar(stat="identity", width=1, color="white") +
+        coord_polar("y", start=0) +
+        theme_void() 
     ggsave(paste0(out_dir, "/distribution_of_diagnosis.png"), 
          pie_distribution,
          width = 8, 

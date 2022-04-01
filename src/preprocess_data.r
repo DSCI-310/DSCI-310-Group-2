@@ -19,6 +19,7 @@ library(dplyr)
 set.seed(4)
 
 source("R/clean_data.r")
+source("R/diagnosis.r")
 
 opt <- docopt(doc)
 
@@ -46,9 +47,11 @@ main <- function(input, out_dir){
                                                          exercise_induced_angina, slope,
                                                          thalassemia))
     
+    raw_data_num_diag <- diagnosis(raw_data_numerical)
+    
     
     # split into training and test data sets
-    raw_data_split <- initial_split(raw_data_numerical, prop = 0.75, strata = diagnosis)
+    raw_data_split <- initial_split(raw_data_num_diag, prop = 0.75, strata = diagnosis)
     data_train <- training(raw_data_split)
     data_test <- testing(raw_data_split) 
     
@@ -59,7 +62,7 @@ main <- function(input, out_dir){
     
     x_train <- subset(data_train, select = -diagnosis)
     x_test <- subset(data_test, select = -diagnosis)
-    full_data <- subset(raw_data_numerical, select = -diagnosis)
+    full_data <- subset(raw_data_num_diag, select = -diagnosis)
    
     
 #     scaler <- preProcess(x_train, method = c("center", "scale"))
@@ -83,7 +86,7 @@ main <- function(input, out_dir){
 
     training_scaled <- cbind(x_train_scaled, data_train$diagnosis)
     test_scaled <- cbind(test_scaled, data_test$diagnosis)
-    full_data_scaled_diag <- cbind(full_data_scaled_diag, raw_data_numerical$diagnosis)
+    full_data_scaled_diag <- cbind(full_data_scaled_diag, raw_data_num_diag$diagnosis)
     
     training_scaled<-as.data.frame(training_scaled)
     test_scaled<-as.data.frame(test_scaled)
