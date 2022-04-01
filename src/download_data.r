@@ -25,7 +25,7 @@ main <- function(url, out_file) {
     if (dir.exists(out_file)) {
         write.csv(data, out_file)
     } else {
-        dir.create(out_file)
+        dir.create(dirname(out_file), recursive = TRUE)
         write.csv(data, out_file)
     }
 }
