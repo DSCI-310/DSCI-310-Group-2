@@ -15,6 +15,8 @@ library(ggplot2)
 library(GGally)
 library(rlang)
 library(magrittr)
+library(dplyr)
+library(caret)
 set.seed(4)
 
 source("R/clean_data.r")
