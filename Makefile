@@ -1,6 +1,6 @@
 # Based of Code from Tiffany Timbers: https://github.com/ttimbers/breast_cancer_predictor/blob/master/Makefile
 
-all:results/accuracy_plot.png results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png results/final_model.rds results/accuracy_plot.png results/confusion_matrix.png doc/heart_disease.rmd 
+all:results/kappa_vs_k.png results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png results/final_model.rds results/kappa_vs_k.png results/final_model_quality.rds doc/heart_disease.rmd 
 
 # download data
 data/raw/cleveland_raw.csv: src/download_data.r
@@ -15,11 +15,11 @@ results/box_hd.png results/distribution_of_diagnosis.png results/variable_correl
 	Rscript src/eda_hd.r --full=data/processed/full.csv --out_dir=results
 
 # tune model
-results/final_model.rds results/accuracy_plot.png: src/modeling.r data/processed/training.csv
+results/final_model.rds results/kappa_vs_k.png: src/modeling.r data/processed/training.csv
 	Rscript src/modeling.r --train=data/processed/training.csv --out_dir=results
 
 # test model on unseen data
-results/confusion_matrix.png: src/model_results.r data/processed/test.csv
+results/final_model_quality.rds: src/model_results.r data/processed/test.csv
 	Rscript src/model_results.r --test=data/processed/test.csv --out_dir=results
 
 # render report
