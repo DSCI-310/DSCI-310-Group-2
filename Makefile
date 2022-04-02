@@ -27,6 +27,7 @@ doc/heart_disease.md results/box_hd.png results/distribution_of_diagnosis.png re
 	Rscript -e "rmarkdown::render('doc/heart_disease.rmd')"
 
 clean: 
-	rm -rf data
+	rm -rf data/processed
+	rm -rf data/raw
 	rm -rf results
 	rm -rf doc/heart_disease.html doc/heart_disease.pdf
