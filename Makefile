@@ -23,10 +23,10 @@ results/confusion_matrix.png: src/model_results.r data/processed/test.csv
 	Rscript src/model_results.r --test=data/processed/test.csv --out_dir=results
 
 # render report
-doc/heart_disease.md results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png: doc/heart_disease.rmd doc/references.bib
+doc/heart_disease.md results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png doc/heart_disease.html doc/heart_disease.pdf: doc/heart_disease.rmd doc/references.bib
 	Rscript -e "rmarkdown::render('doc/heart_disease.rmd')"
 
 clean: 
 	rm -rf data
 	rm -rf results
-	rm -rf doc/heart_disease.rmd doc/heart_disease.html
+	rm -rf doc/heart_disease.html doc/heart_disease.pdf
