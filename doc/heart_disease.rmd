@@ -8,6 +8,7 @@ output:
   bookdown::pdf_document2:
       toc: true
       toc_depth: 2
+  github_document
 
 bibliography: references.bib  
 ---
