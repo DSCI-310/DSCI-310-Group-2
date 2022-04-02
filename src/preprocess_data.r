@@ -90,6 +90,7 @@ main <- function(input, out_dir){
     
     training_scaled<-as.data.frame(training_scaled)
     test_scaled<-as.data.frame(test_scaled)
+    full_data_scaled_diag<-as.data.frame(full_data_scaled_diag)
 
     colnames(training_scaled) <- c("age",
                     "resting_blood_pressure",
