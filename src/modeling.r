@@ -6,6 +6,7 @@ Options:
 --out_dir=<out_dir> Path to directory where the serialized model should be written
 " -> doc
 
+if(!require(caret)) install.packages("caret",dependencies = TRUE, repos = "http://cran.us.r-project.org")
 library(tidyverse)
 library(tidymodels)
 library(ggplot2)
