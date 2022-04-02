@@ -21,13 +21,16 @@ library(tidymodels)
 library(ggplot2)
 library(GGally)
 library(rlang)
+set.seed(4)
+```
+
+```{r sources}
 source("../R/clean_data.r")
 source("../R/accuracy_plot.r")
 source("../R/diagnosis.r")
 source("../R/balance_check.r")
-source("../R/model_results.r")
-source("../R/modeling.r")
-set.seed(4)
+source("../src/model_results.r")
+source("../src/modeling.r")
 ```
 
 
