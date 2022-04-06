@@ -2,14 +2,13 @@
 title: 'DSCI 310 Group 2: Predicting Heart Disease'
 author: "Emily Ahn, Divya Bilolikar, Ryan Peng, Niki Zamani"
 output:
-  github_document:
-      toc: true
   bookdown::html_document2:
       toc: true
       toc_depth: 2
   bookdown::pdf_document2:
       toc: true
       toc_depth: 2
+  github_document
 
 bibliography: references.bib  
 ---
