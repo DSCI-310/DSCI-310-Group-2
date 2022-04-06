@@ -25,13 +25,13 @@ There are two ways to run this analysis.
 The first way is to use docker. You will need to get a copy of the environment that this analysis was created in. Go to https://hub.docker.com create an account and download the docker application. Open Docker then in terminal run the following command
 
 ```
-docker pull rpeng35/dsci-310_group_2:v0.21.0
+docker pull rpeng35/dsci-310_group_2:v0.23.0
 ```
 
 Then run the code below to install the required dependncies on your machine.
 
 ```
-docker run --rm -it -p 8888:8888 -v /$(pwd):/opt/notebooks rpeng35/dsci-310_group_2:v0.21.0
+docker run --rm -it -p 8888:8888 -v /$(pwd):/opt/notebooks rpeng35/dsci-310_group_2:v0.23.0
 ```
 If you run the above code and terminal says something about that port already being allocated then simply change the 8888 BEFORE the colon to any other 4 digit number.
 
