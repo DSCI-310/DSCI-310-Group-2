@@ -1,6 +1,6 @@
 # Based of Code from Tiffany Timbers: https://github.com/ttimbers/breast_cancer_predictor/blob/master/Makefile
 
-all:results/accuracy_plot.png results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png results/accuracy_plot.png results/confusion_matrix.png doc/heart_disease.rmd 
+all:results/accuracy_plot.png results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png results/accuracy_plot.png results/confusion_matrix.png doc/heart_disease.md doc/heart_disease.html doc/heart_disease.pdf
 
 # download data
 data/raw/cleveland_raw.csv: src/download_data.r
@@ -20,7 +20,7 @@ results/accuracy_plot.png results/confusion_matrix.png: src/modeling.r data/proc
 
 # render report
 doc/heart_disease.md doc/heart_disease.html doc/heart_disease.pdf: results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png  doc/heart_disease.rmd doc/references.bib
-	Rscript -e "rmarkdown::render('doc/heart_disease.rmd')"
+	Rscript -e "rmarkdown::render('doc/heart_disease.rmd') "
 
 clean: 
 	rm -rf data/processed
