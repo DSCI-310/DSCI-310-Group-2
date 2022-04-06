@@ -34,6 +34,7 @@ test_that("`accuracy_plot` should return a ggplot and plot layers match expectat
 
 
 test_that("`accuracy_plot` should throw an error when incorrect types are passed to `tibble` argument", {
+    expect_error(accuracy_plot(df0))
     expect_error(accuracy_plot(0))
     expect_error(accuracy_plot("abc"))
 })
