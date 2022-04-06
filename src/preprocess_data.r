@@ -116,6 +116,10 @@ main <- function(input, out_dir){
                                "num_of_major_vessels",
                                "diagnosis")
     
+    full_data_scaled_diag$diagnosis <- as.factor(full_data_scaled_diag$diagnosis)
+    training_scaled$diagnosis <- as.factor(training_scaled$diagnosis)
+    test_scaled$diagnosis <- as.factor(test_scaled$diagnosis)
+    
  
     
     
