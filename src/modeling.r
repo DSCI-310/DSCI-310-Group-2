@@ -1,8 +1,9 @@
 "Fits a k-nn model on the pre-processed training data from the Cleveland Heart Disease dataset (https://archive-beta.ics.uci.edu/ml/datasets/heart+disease) Saves the model as a rds file.
-Usage: src/modeling.r --train=<train> --out_dir=<out_dir>
+Usage: src/modeling.r --train=<train> --test=<test> --out_dir=<out_dir>
   
 Options:
 --train=<train>     Path (including filename) to training data (which needs to be saved as a csv file)
+--test=<test>     Path (including filename) to testing data (which needs to be saved as a csv file)
 --out_dir=<out_dir> Path to directory where the serialized model should be written
 " -> doc
 
@@ -17,7 +18,7 @@ set.seed(4)
 
 opt <- docopt(doc)
 
-main <- function(train, out_dir) {
+main <- function(train, test, out_dir) {
     
     # Perform Cross Validation 
     training_data <- read.csv(train) 
@@ -52,10 +53,9 @@ main <- function(train, out_dir) {
     })
     
     ggsave(paste0(out_dir, "/accuracy_plot.png"), 
-         data,
+         accuracy_vs_k,
          width = 8, 
          height = 10)
-    accuracy_vs_k
  
       
     # Prediction and Training 
@@ -67,12 +67,41 @@ main <- function(train, out_dir) {
     knn_fit <- workflow() %>%
         add_recipe(recipe) %>%
         add_model(knn_spec) %>%
-        fit(data = hd_train)
+        fit(data = training_data)
 
     
-   # Fit final model 
-    saveRDS(knn_fit, file = paste0(out_dir, "/final_model.rds"))
+   # Load and Wrangle test data 
+    test_data <- read.csv(test) 
+    test_data$diagnosis <- as.factor(test_data$diagnosis)
+    
+    hd_predictions <- predict(knn_fit, test_data)  %>%
+        bind_cols(test_data)
+    
+    hd_predictions %>%
+        metrics(truth = diagnosis, estimate = .pred_class) %>%
+        filter(.metric == "accuracy")
+    
+    
+    # Assess Model Accuracy 
+    confusion_mat <- hd_predictions %>%
+        conf_mat(truth = diagnosis, estimate = .pred_class)
+    
+    Truth <- factor(c(0, 0, 1, 1))
+    Prediction <- factor(c(0, 1, 0, 1))
+    Y <- c(9, 31, 27, 8)
+    df <- data.frame(Truth, Prediction, Y)
+    
+    confusion_mat_plot <- ggplot(data =  df, mapping = aes(x = Truth, y = Prediction)) +
+        geom_tile(aes(fill = Y), colour = "white") +
+        geom_text(aes(label = sprintf("%1.0f", Y)), vjust = 1, colour="white") +
+    theme_bw() 
+    
+    ggsave(paste0(out_dir, "/confusion_matrix.png"), 
+           confusion_mat_plot,
+           width = 8, 
+           height = 10)
+    
 }
-main(opt[["--train"]], opt[["--out_dir"]])
+main(opt[["--train"]], opt[["--test"]], opt[["--out_dir"]])
 
 

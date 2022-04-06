@@ -21,7 +21,7 @@ main <- function(test, out_dir) {
     # Load Model and Predict 
     final_model <- readRDS("results/final_model.rds")
     
-    hd_predictions <- predict(final_model, test_data)  %>%
+    hd_predictions <- predict(final_model$workflow, test_data)  %>%
         bind_cols(test_data)
     
     hd_predictions %>%
