@@ -52,7 +52,7 @@ main <- function(train, out_dir) {
     })
     
     ggsave(paste0(out_dir, "/accuracy_plot.png"), 
-         data,
+         accuracy_vs_k,
          width = 8, 
          height = 10)
     accuracy_vs_k
@@ -67,7 +67,7 @@ main <- function(train, out_dir) {
     knn_fit <- workflow() %>%
         add_recipe(recipe) %>%
         add_model(knn_spec) %>%
-        fit(data = hd_train)
+        fit(data = training_data)
 
     
    # Fit final model 
