@@ -11,9 +11,9 @@ Options:
 library(tidyverse)
 library(caret)
 library(docopt)
-library(ggridges)
 library(ggthemes)
 library(ggplot2)
+library(GGally)
 theme_set(theme_minimal())
 
 opt <- docopt(doc) 
@@ -22,11 +22,10 @@ main <- function(full, out_dir) {
     
     data <- read.csv(full)
     
-    dir.create(out_dir, recursive = TRUE)
     
-    
-    # generate box plot  
-    box_hd <- ggplot(training_scaled, aes(x=age, y=diagnosis)) + 
+    # generate box plot 
+
+    box_hd <- ggplot(data, aes(x=age, y=factor(diagnosis))) + 
         geom_boxplot() +
         coord_flip()
     
