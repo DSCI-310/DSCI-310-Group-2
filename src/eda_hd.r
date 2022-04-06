@@ -22,7 +22,9 @@ main <- function(full, out_dir) {
     
     data <- read.csv(full)
     
-    dir.create(out_dir, recursive = TRUE)
+    try({
+        dir.create(out_dir, recursive = TRUE)
+    })
     
     
     # generate box plot  

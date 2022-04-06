@@ -21,6 +21,7 @@ main <- function(train, out_dir) {
     
     # Perform Cross Validation 
     training_data <- read.csv(train) 
+    training_data$diagnosis <- as.factor(training_data$diagnosis)
     hd_vfold <- vfold_cv(training_data, v = 5, strata = diagnosis)
 
    recipe <- recipe(diagnosis ~ ., data = training_data) %>%
@@ -46,7 +47,9 @@ main <- function(train, out_dir) {
 
     accuracy_vs_k <- accuracy_plot(accuracies)
         
-    dir.create(out_dir, recursive = TRUE)
+    try({
+        dir.create(out_dir, recursive = TRUE)
+    })
     
     ggsave(paste0(out_dir, "/accuracy_plot.png"), 
          data,

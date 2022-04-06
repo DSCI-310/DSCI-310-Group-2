@@ -16,7 +16,7 @@ main <- function(test, out_dir) {
     
     # Load and Wrangle test data 
     test_data <- read.csv(test) 
-   
+    test_data$diagnosis <- as.factor(test_data$diagnosis)
     
     # Load Model and Predict 
     final_model <- readRDS("results/final_model.rds")
