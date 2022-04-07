@@ -170,13 +170,13 @@ Next we perform cross validation for our data. This is important because it allo
 Next we create our classifier. The only parameter we can tune is the number of classifier we have. We are tuning our classifier to get the optimal number of neighbors as to increase accuracy.
 
 
-```{r correlation, echo=FALSE, fig.dim = c(8, 6), fig.cap="Accuracy of K-NN Model with Neighbors"}
+```{r accuracy plot, echo=FALSE, fig.dim = c(8, 6), fig.cap="Accuracy of K-NN Model with Neighbors"}
 knitr::include_graphics("../results/Accuracy_Plot.png")
 ```
 
 "From our graph above we can see that our accuracy peaks at around 12-13 neighbors. Therefore we will use that in our new classifier that we will use to predict."
 
-```{r correlation, echo=FALSE, fig.dim = c(8, 6), fig.cap="Figure 6: Confusion Matrix of Results"}
+```{r confusion matrix, echo=FALSE, fig.dim = c(8, 6), fig.cap="Figure 6: Confusion Matrix of Results"}
 knitr::include_graphics("../results/confusion_matrix.png")
 ```
 
