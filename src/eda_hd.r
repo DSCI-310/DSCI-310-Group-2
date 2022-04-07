@@ -9,7 +9,6 @@ Options:
 " -> doc
 
 library(tidyverse)
-library(caret)
 library(docopt)
 library(ggthemes)
 library(ggplot2)

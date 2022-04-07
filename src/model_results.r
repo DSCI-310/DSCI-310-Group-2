@@ -6,7 +6,6 @@ Options:
 " -> doc
   
 library(tidyverse)
-library(caret)
 library(docopt)
 set.seed(2019)
 
