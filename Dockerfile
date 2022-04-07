@@ -15,3 +15,4 @@ RUN conda install --yes -c conda-forge r-magrittr=2.0.3
 RUN conda install --yes -c conda-forge r-dplyr=1.0.8
 RUN conda install --yes -c conda-forge r-rlang=1.0.2
 RUN conda install --yes -c conda-forge r-ggthemes=4.2.4
+RUN conda install --yes -c conda-forge pandoc=2.17.1
