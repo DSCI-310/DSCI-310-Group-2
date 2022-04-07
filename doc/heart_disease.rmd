@@ -48,14 +48,10 @@ We started by loading the heart disease data set and adding a column headers. Th
 We grouped the data by its diagnosis. Then we applied data cleaning. We checked for the data type and for any mistakes about the characters. We further dealt with the NA values.
 
 ```{r heart--disease-table, echo=FALSE, message=FALSE, out.width="80%"}
-heart_disease <- read.csv("../data/processed-cleveland.csv", header = FALSE)
+heart_disease <- read.csv("../data/processed/full.csv", header = FALSE)
 knitr::kable(head(heart_disease), caption = "Heart Disease Dataset")
 ``` 
 
-```{r load-data}
-heart_disease <- read_csv("../data/processed-cleveland.csv")
-head(heart_disease)
-```
 
 Before any data analysis can be done, the data needs to be cleaned. The downloaded data does not have any column names so first we need to add all the variables to their respective column. The next step in cleaning up the data is to check for NAs. It is important that we remove these before any data analysis so that the functions we use will run on the data properly. Instead of R recognizing our missing values, we have a question marks. We need to convert this to an actual NA that R will recognize. Thus to clean the data we have used our custom clean function. Additioanlly since this project should be in the scope of DSCI 100 and we did not learn how to use one hot encoding to deal with categorical variables, we will drop all the categorical variables from our dataset.
 
@@ -127,7 +123,7 @@ diagnosis_heart_disease
 
 
 ```{r pie distribution, echo=FALSE, fig.dim = c(8, 6), fig.cap="Figure 3: Distribution of Diagnosis"}
-knitr::include_graphics("../results/Distribution_of_diagnosis.png")
+knitr::include_graphics("../results/distribution_of_diagnosis.png")
 ```
 
 As we can see the data looks fairly balanced.
@@ -171,7 +167,7 @@ Next we create our classifier. The only parameter we can tune is the number of c
 
 
 ```{r accuracy plot, echo=FALSE, fig.dim = c(8, 6), fig.cap="Accuracy of K-NN Model with Neighbors"}
-knitr::include_graphics("../results/Accuracy_Plot.png")
+knitr::include_graphics("../results/accuracy_plot.png")
 ```
 
 "From our graph above we can see that our accuracy peaks at around 12-13 neighbors. Therefore we will use that in our new classifier that we will use to predict."
