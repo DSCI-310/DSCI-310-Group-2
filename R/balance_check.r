@@ -28,4 +28,3 @@ balance_check <- function(df, col_n) {
 
 
 
-    
