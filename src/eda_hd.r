@@ -13,7 +13,7 @@ library(docopt)
 library(ggthemes)
 library(ggplot2)
 library(GGally)
-source("R/balance_check.r")
+library(group2)
 theme_set(theme_minimal())
 
 opt <- docopt(doc)
