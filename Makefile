@@ -20,7 +20,7 @@ results/accuracy_plot.png results/confusion_matrix.png: src/modeling.r data/proc
 
 # render report
 doc/heart_disease.md doc/heart_disease.html doc/heart_disease.pdf: data/variables.csv data/processed/full.csv results/box_hd.png results/distribution_of_diagnosis.png results/variable_correlation.png results/accuracy_plot.png results/confusion_matrix.png doc/heart_disease.rmd doc/references.bib
-	Rscript -e "rmarkdown::render('doc/heart_disease.rmd', c('bookdown::html_document2', 'bookdown::pdf_document2')) "
+	Rscript -e "rmarkdown::render('doc/heart_disease.rmd', c('bookdown::html_document2', 'bookdown::pdf_document2'))"
 
 clean: 
 	rm -rf data/processed
