@@ -17,21 +17,8 @@ bibliography: references.bib
 ```{r library-setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message=FALSE)
 library(tidyverse)
-library(tidymodels)
-library(ggplot2)
-library(GGally)
-library(rlang)
-setwd("..")
 ```
 
-```{r source-setup, include=FALSE}
-# source("../R/clean_data.r")
-# source("../R/accuracy_plot.r")
-# source("../R/diagnosis.r")
-# source("../R/balance_check.r")
-
-set.seed(4)
-```
 
 
 # Introduction
@@ -71,7 +58,7 @@ We grouped the data by its diagnosis and graphed it in order for us to see if th
 
 ```{r balance-table, echo=FALSE, message=FALSE, out.width="80%"}
 balance_table <- read_csv("../results/proportion.csv")
-knitr::kable(balance-table, caption = "Balance of Diagnosis")
+knitr::kable(balance_table, caption = "Balance of Diagnosis")
 ```
 
 
