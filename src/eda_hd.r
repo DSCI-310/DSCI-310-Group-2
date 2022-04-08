@@ -64,7 +64,7 @@ main <- function(full, out_dir) {
 
     # generate balance check
     balance_check_table <- balance_check(data, diagnosis)
-    write.csv(balance_check, paste0(out_dir, "/proportion.csv"), row.names=FALSE)
+    write.csv(balance_check_table, paste0(out_dir, "/proportion.csv"), row.names=FALSE)
 
 
 }
