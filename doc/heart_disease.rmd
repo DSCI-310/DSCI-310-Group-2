@@ -14,19 +14,25 @@ output:
 bibliography: references.bib  
 ---
 
-```{r setup, include=FALSE}
+```{r}
+print(getwd())
+```
+
+```{r library-setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message=FALSE)
 library(tidyverse)
 library(tidymodels)
 library(ggplot2)
 library(GGally)
 library(rlang)
+setwd("..")
+```
+
+```{r source-setup, include=FALSE}
 source("../R/clean_data.r")
 source("../R/accuracy_plot.r")
 source("../R/diagnosis.r")
 source("../R/balance_check.r")
-source("../R/model_results.r")
-source("../R/modeling.r")
 set.seed(4)
 ```
 
@@ -49,33 +55,14 @@ We started by loading the heart disease data set and adding a column headers. Th
 We grouped the data by its diagnosis. Then we applied data cleaning. We checked for the data type and for any mistakes about the characters. We further dealt with the NA values.
 
 ```{r heart--disease-table, echo=FALSE, message=FALSE, out.width="80%"}
-heart_disease <- read.csv("../data/processed/full.csv", header = FALSE)
-knitr::kable(head(heart_disease), caption = "Heart Disease Dataset")
+heart_disease <- read.csv("../data/processed/full.csv", header = TRUE)
+knitr::kable(head(heart_disease), caption = "Clean Heart Disease Dataset")
 ``` 
 
 
 Before any data analysis can be done, the data needs to be cleaned. The downloaded data does not have any column names so first we need to add all the variables to their respective column. The next step in cleaning up the data is to check for NAs. It is important that we remove these before any data analysis so that the functions we use will run on the data properly. Instead of R recognizing our missing values, we have a question marks. We need to convert this to an actual NA that R will recognize. Thus to clean the data we have used our custom clean function. Additioanlly since this project should be in the scope of DSCI 100 and we did not learn how to use one hot encoding to deal with categorical variables, we will drop all the categorical variables from our dataset.
 
-```{r clean-data, message=FALSE, warning=FALSE}
-colnames(heart_disease) <- c("age",
-                             "sex",
-                             "chest_pain",
-                             "resting_blood_pressure",
-                             "serum_cholesterol",
-                             "fasting_blood_sugar",
-                             "resting_ecg",
-                             "max_heart_rate",
-                             "exercise_induced_angina",
-                             "oldpeak",
-                             "slope",
-                             "num_of_major_vessels",
-                             "thalassemia",
-                             "diagnosis")
-                             
-heart_disease_clean <- clean_data(heart_disease)
-heart_disease_numerical <- heart_disease_clean[ -c(2:3, 6:7, 9, 11, 13)]
-knitr::kable(head(heart_disease_numerical), caption = "Clean Heart Disease Dataset")
-```
+One thing to note is that our target class (diagnosis) has values from 0 to 4 where 0 means that heart disease was not present and 1-4 indicate increasing severity of the heart disease. For this analysis we will combine all instances where heart disease was present and represent that with a value of 1. We will do this with our custom diagnosis function. This function finds all instances of heart disease (1-4) and replaces them with the number 1 to indicate the presence of heart disease in a patient.
 
 # Exploring Dataset
 Next we need to get to know our data. We will do this by performing exploratory analysis where we summarize our data and graph a few relevant figures. The aim of doing this is to get a better understanding of what our final classification analysis will look like.
@@ -84,28 +71,8 @@ The glimpsefunction allows us to easy tell what type of data we have (i.e. are v
 
 
 ```{r}
-glimpse(heart_disease_clean)
+glimpse(heart_disease)
 ```
-
-We know that sex, chest_pain, fasting_blood_sugar, resting_ecg, exercise_induced_angina and slope are all categorical variables but we can see that R is interpreting them are quantitative variables. It is important for us keep this in mind when we process our data. Additionally we can see that in this dataset num_of_major_vessels and thalassemia are characters. Since num_of_major_vessels is a quantitative variable we will be converting this to a numerical type. We will also convert all the categorical variables into factor types.
-
-One thing to note is that our target class (diagnosis) has values from 0 to 4 where 0 means that heart disease was not present and 1-4 indicate increasing severity of the heart disease. For this analysis we will combine all instances where heart disease was present and represent that with a value of 1. We will do this with our custom diagnosis function. This function finds all instances of heart disease (1-4) and replaces them with the number 1 to indicate the presence of heart disease in a patient.
-
-```{r}
-heart_disease_clean <- heart_disease_clean %>%
-  mutate(num_of_major_vessels = as.numeric(num_of_major_vessels)) %>%
-  diagnosis()
-```
-
-
-```{r}
-glimpse(heart_disease_clean)
-```
-
-```{r}
-summary(heart_disease) #summary
-```
-
 
 
 ````{r attribute box, echo=FALSE, fig.dim = c(8, 6), fig.cap="Age vs Heart Disease Diagnosis."}
@@ -118,8 +85,8 @@ Through this plot we can see that the most common age to have a heart disease ra
 We grouped the data by its diagnosis and graphed it in order for us to see if the dataset is balanced or not.
 
 ```{r}
-diagnosis_heart_disease <- balance_check(heart_disease_clean, diagnosis)
-diagnosis_heart_disease
+heart_disease_table <- balance_check(heart_disease, diagnosis)
+heart_disease_table
 ```
 
 
@@ -131,7 +98,7 @@ As we can see the data looks fairly balanced.
 
 
 ```{r correlation, echo=FALSE, fig.dim = c(8, 6), fig.cap="Figure 4: Correlation between Variables"}
-knitr::include_graphics("../results/varaible_correlation.png")
+knitr::include_graphics("../results/variable_correlation.png")
 ```
 
 In figure 4 we can see that most variables look like they have some correlation save for serum_cholesterol and max_heart_rate. While the correlations may not look very high, this is actually a good sign because highly correlated variables can lead to overly complicated models.
@@ -143,20 +110,9 @@ First we need to split our data. We do this so that after we create our model we
 
 ```{r split-data}
 # split into training and test data sets
-hd_data_split <- initial_split(heart_disease_numerical, prop = 0.75, strata = diagnosis)
-data_train <- training(hd_data_split)
-data_test <- testing(hd_data_split) 
+data_train <- read.csv("../data/processed/training.csv", header = TRUE)
+data_test <- read.csv("../data/processed/test.csv", header = TRUE)
 
-train_counts <- summarise(training_data,
-                          `Data partition` = "Training",
-                          `Heart Disease Not Detected` = sum(diagnosis  == 0),
-                          `Heart Disease Detected` = sum(diagnosis  == 1))
-test_counts <- summarise(test_data,
-                         `Data partition` = "Test",
-                         `Heart Disease Not Detected` = sum(diagnosis  == 0),
-                         `Heart Disease Detected` = sum(diagnosis  == 1))
-kable(bind_rows(train_counts, test_counts),
-      caption = "Counts of observation for each class for each data partition.")
 ```
 
 As we can see in REFENECE FIGURE, each class is fairy balanced.
