@@ -71,7 +71,7 @@ We grouped the data by its diagnosis and graphed it in order for us to see if th
 
 ```{r balance-table, echo=FALSE, message=FALSE, out.width="80%"}
 balance_table <- read_csv("../results/proportion.csv")
-knitr::kable(balance-table, caption = "Balance of Diagnosis")
+knitr::kable(balance_table, caption = "Balance of Diagnosis")
 ```
 
 
