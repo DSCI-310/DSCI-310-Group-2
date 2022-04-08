@@ -25,10 +25,11 @@ setwd("..")
 ```
 
 ```{r source-setup, include=FALSE}
-source("../R/clean_data.r")
-source("../R/accuracy_plot.r")
-source("../R/diagnosis.r")
-source("../R/balance_check.r")
+# source("../R/clean_data.r")
+# source("../R/accuracy_plot.r")
+# source("../R/diagnosis.r")
+# source("../R/balance_check.r")
+
 set.seed(4)
 ```
 
@@ -69,8 +70,8 @@ Through figure \@ref(fig:attribute-box) we can see that the most common age to h
 We grouped the data by its diagnosis and graphed it in order for us to see if the dataset is balanced or not. In table \@ref(tab:balance-table) we can see that the data is fairly evenly balanced between no diagnosis and detection of heart diseases. This is further shown in figure \@ref(fig:pie-distribution)
 
 ```{r balance-table, echo=FALSE, message=FALSE, out.width="80%"}
-heart_disease_table <- balance_check(heart_disease, diagnosis)
-knitr::kable(heart_disease_table, caption = "Balance of Diagnosis in Dataset")
+balance_table <- read_csv("../results/proportion.csv")
+knitr::kable(balance-table, caption = "Balance of Diagnosis")
 ```
 
 
@@ -89,12 +90,6 @@ In figure \@ref(fig:correlation) we can see that most variables look like they h
 ## Classification Analysis
 Now that we have done our exploratory analysis we can begin training our classification model. To do this we need to split our data. We do this so that after we create our model we can find the accuracy of our classifier.
 
-```{r split-data}
-# split into training and test data sets
-data_train <- read.csv("../data/processed/training.csv", header = TRUE)
-data_test <- read.csv("../data/processed/test.csv", header = TRUE)
-
-```
 
 Next we perform cross validation for our data. This is important because it allows us to get a more accurate idea of how our classifier is doing. If we did not use cross validation our classifier might be biased from an unbalanced validation set without us knowing. We preprocess the data by creating a recipe. This step allows us to standardize our predictors so that any one predictor is not disproportionately affecting the classifier even if it has a larger number.
 
