@@ -16,6 +16,11 @@ List of dependencies to run the analysis:
 8.  Rmarkdown package in version 2.13
 9.  Tinytex package in version 0.37
 10. knitr package in version 1.37
+11. magrittr package in version 2.0.3
+12. dpylr package in version 1.0.8
+13. rlang package in version 1.0.2
+14. ggthemes package in version 4.2.4
+15. DSCI-310-Group-2-packages in version XXX
 
 
 ## Running the Analysis
@@ -37,14 +42,29 @@ If you run the above code and terminal says something about that port already be
 
 Then, open up a web browser provided in your terminal and access JupyterLab.
 
-To clone the repository you can either clone it in the terminal command line or clone it through thr JupyterLab GUI. To clone it using the terminal command line follow the isntructions provided in this link:
+To clone the repository you can either clone it in the terminal command line or clone it through the JupyterLab GUI. To clone it using the terminal command line follow the isntructions provided in this link:
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
 
 To clone the repository using JupyterLab first ensure that you are in the root directory of your computer. Then navigate to the git button (diamond shape) on the left side menu bar and click on the button that says "Clone a Repository". Then paste the HTTPS link that can be found on the main page of this repository (https://github.com/DSCI-310/DSCI-310-Group-2) when you click on the green code button.
 
+To generate the HTML and PDF run the following.
+
+```
+make all
+```
+Then to remove all of the files created by that (such as the results folder), run following
+```
+make clean
+```
+
+Depending on the computer you are using to run the analysis, after you run ```make all``` you may recieve an error that looks like the following
+<img width="745" alt="error" src="https://user-images.githubusercontent.com/66176164/162491977-88a00110-9abf-4ad2-9726-a31c281fe6d3.png">
+
+If this happens you will need to run the analyis as described below.
+
 The second way to run this analysis does not use docker. 
 
-This can be done by cloning the repository (as descibed above or any other way you feel comfortable) and locally installing the dependencies listed above. Then navigate to the root of this project (best done using the command line) and run the following command
+This can be done by cloning the repository (as described above or any other way you feel comfortable) on a local application you have (such as VScode, RStudio, JupyterLab, etc) and locally installing the dependencies listed above. Then navigate to the root of this project (best done using the command line) and run the following command
 ```
 make all
 ```
