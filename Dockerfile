@@ -15,4 +15,4 @@ RUN conda install --yes -c conda-forge r-magrittr=2.0.3
 RUN conda install --yes -c conda-forge r-dplyr=1.0.8
 RUN conda install --yes -c conda-forge r-rlang=1.0.2
 RUN conda install --yes -c conda-forge r-ggthemes=4.2.4
-RUN Rscript -e 'install.packages("devtools");devtools::install_github("DSCI-310/DSCI-310-Group-8-package@f3c7a9c9851aeac41cb5d70f61df8c1d7397b6ed", force = TRUE)'
+RUN Rscript -e 'install.packages("devtools");devtools::install_github("DSCI-310/DSCI-310-Group-2-packages@b84b149a87babfce4111cc6b9a06dd01e2677509", force = TRUE)'
